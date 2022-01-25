@@ -27,11 +27,11 @@ body{
   background-color: #111;
 }
 
-.ingrediments-hide{
+.ingredients-hide{
   display: none;
 }
 
-.ingrediments-show{
+.ingredients-show{
   z-index: 100;
   padding: 0px;
   display: block;
