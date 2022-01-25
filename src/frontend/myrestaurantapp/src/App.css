@@ -1,38 +1,42 @@
-.App {
-  text-align: center;
+body{
+  background-image: linear-gradient(to right top, #5e74c2, #0099dc, #00b6c5, #00cb8b, #a9d44f);
+  background-attachment: fixed;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 50px 0 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header-navbar li {
+  float: right;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header-navbar li a {
+  display: block;
   color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+.header-navbar li a:hover {
+  background-color: #111;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ingrediments-hide{
+  display: none;
+}
+
+.ingrediments-show{
+  z-index: 100;
+  padding: 0px;
+  display: block;
+}
+.a{
+  position: fixed;
+  margin-top: 30px;
 }
