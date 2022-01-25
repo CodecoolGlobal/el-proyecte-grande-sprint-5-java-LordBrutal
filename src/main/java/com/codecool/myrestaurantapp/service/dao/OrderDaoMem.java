@@ -16,6 +16,10 @@ public class OrderDaoMem implements OrderDAO{
     private Set<Order> activeOrders = new HashSet<>();
     private Set<Order> fulfilledOrders = new HashSet<>();
 
+    public int getStoredOrdersNumber () {
+        return activeOrders.size() + fulfilledOrders.size();
+    }
+
     @Override
     public void addOrder(Order order) {
         activeOrders.add(order);
