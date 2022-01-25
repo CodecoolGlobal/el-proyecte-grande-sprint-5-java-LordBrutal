@@ -1,14 +1,16 @@
 package com.codecool.myrestaurantapp.data_source;
 
-import com.codecool.myrestaurantapp.model.Address;
-import com.codecool.myrestaurantapp.model.Customer;
-import com.codecool.myrestaurantapp.model.Ingredient;
+import com.codecool.myrestaurantapp.model.*;
 import com.codecool.myrestaurantapp.model.type.UnitOfMeasureType;
 import com.codecool.myrestaurantapp.service.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class Initializer {
@@ -35,11 +37,30 @@ public class Initializer {
         Ingredient ingredientThree = Ingredient.builder().name("egg").price(BigDecimal.valueOf(1400)).quantity(UnitOfMeasureType.PIECE).build();
         Ingredient ingredientFour = Ingredient.builder().name("red wine").price(BigDecimal.valueOf(5000)).quantity(UnitOfMeasureType.MILLILITRE).build();
         Ingredient ingredientFive = Ingredient.builder().name("flour").price(BigDecimal.valueOf(310)).quantity(UnitOfMeasureType.GRAM).build();
+        Ingredient ingredientSix = Ingredient.builder().name("beef").price(BigDecimal.valueOf(8000)).quantity(UnitOfMeasureType.GRAM).build();
         ingredientsDaoMem.addIngredient(ingredientOne);
         ingredientsDaoMem.addIngredient(ingredientTwo);
         ingredientsDaoMem.addIngredient(ingredientThree);
         ingredientsDaoMem.addIngredient(ingredientFour);
         ingredientsDaoMem.addIngredient(ingredientFive);
+        ingredientsDaoMem.addIngredient(ingredientSix);
+        HashMap<Ingredient, Integer> friedEggIngredients = new HashMap<>();
+        friedEggIngredients.put(ingredientOne, 2);
+        friedEggIngredients.put(ingredientThree, 3);
+        HashMap<Ingredient, Integer> beefStewIngredients = new HashMap<>();
+        beefStewIngredients.put(ingredientOne, 3);
+        beefStewIngredients.put(ingredientTwo, 3);
+        beefStewIngredients.put(ingredientSix, 200);
+        beefStewIngredients.put(ingredientFour, 5);
+        Receipt receiptFriedEggs = Receipt.builder().id(receiptDaoMem.getAllReceipt().size()).name("Fried eggs").isAvailable(true).ingredients(friedEggIngredients).build();
+        Receipt receiptBeefStew = Receipt.builder().id(receiptDaoMem.getAllReceipt().size()).name("Beef stew").isAvailable(true).ingredients(beefStewIngredients).build();
+        receiptDaoMem.addNewReceipt(receiptFriedEggs);
+        receiptDaoMem.addNewReceipt(receiptBeefStew);
+        List<Receipt> orderReceipt = new ArrayList<>();
+        orderReceipt.add(receiptBeefStew);
+        orderReceipt.add(receiptFriedEggs);
+        Order order1 = Order.builder().id(orderDaoMem.getStoredOrdersNumber()).orderTime(LocalDateTime.now()).customer(customerOne).foods(orderReceipt).build();
+        orderDaoMem.addOrder(order1);
 
 
     }
