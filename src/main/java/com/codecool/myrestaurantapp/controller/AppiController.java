@@ -43,5 +43,11 @@ public class AppiController {
         return "";
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/api/get-all-ingredient")
+    public  String getAllingredient(){
+        return "";
+    }
+
 
 }
