@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class Order {
 
+    private int id;
     private List<Receipt> foods;
     private Customer customer;
     private LocalDateTime orderTime;
