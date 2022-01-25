@@ -12,6 +12,7 @@ import java.util.Set;
 @Builder
 public class Receipt {
 
+    private int id;
     private String name;
     private Set<Ingredient> ingredients;
     private BigDecimal price;
