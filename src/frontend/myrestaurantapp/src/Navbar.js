@@ -1,6 +1,3 @@
-import Ingredients from "./pages/Ingredients";
-import {useState} from "react";
-
 function Navbar() {
     return (
         <div>
