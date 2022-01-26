@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,700;1,400&display=swap');*{
+  font-family: 'Public Sans', sans-serif;
+}
 body{
   background-image: linear-gradient(to right top, #5e74c2, #0099dc, #00b6c5, #00cb8b, #a9d44f);
   background-attachment: fixed;
@@ -16,6 +19,7 @@ body{
 }
 
 .header-navbar li a {
+  font-weight: bold;
   display: block;
   color: white;
   text-align: center;
@@ -39,4 +43,55 @@ body{
 .a{
   position: fixed;
   margin-top: 30px;
+}
+
+.center-img{
+  z-index: -10000;
+  text-align: center;
+}
+
+.chef-logo{
+  margin: 0 auto;
+  width: 50%;
+}
+
+.add-ingredient-container{
+  margin-top: 120px;
+}
+.add-ingredient-baackround{
+  padding: 50px;
+  width: 230px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.14);
+  text-align: center;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+
+}
+
+.add-ingredient-container .label-text{
+  font-size: 20px;
+}
+
+.add-ingredient-container .label-input{
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
+  height: 20px;
+}
+
+.add-ingredient-container .select-dropdown{
+  padding: 11px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
+  height: 20px;
+  background-color: white;
+}
+
+.submit-button{
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
 }
