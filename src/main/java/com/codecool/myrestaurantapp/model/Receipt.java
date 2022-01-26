@@ -5,15 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.HashMap;
 
 @Data
 @AllArgsConstructor
 @Builder
 public class Receipt {
 
+    private int id;
     private String name;
-    private Set<Ingredient> ingredients;
+    private HashMap<Ingredient, Integer> ingredients;
     private BigDecimal price;
     private boolean isAvailable;
 }
