@@ -1,6 +1,6 @@
 
-function Ingredients(props) {
-    return (<div className={props.text}>
+function Ingredients() {
+    return (<div>
         <form>
             <label>Name<input type="text" name="name" /></label>
             <button type="submit">Click me</button>
