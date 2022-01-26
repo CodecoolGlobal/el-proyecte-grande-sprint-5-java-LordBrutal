@@ -1,13 +1,9 @@
 package com.codecool.myrestaurantapp.service.dao;
 
-import com.codecool.myrestaurantapp.model.Customer;
 import com.codecool.myrestaurantapp.model.Order;
-import com.codecool.myrestaurantapp.model.Receipt;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Repository
