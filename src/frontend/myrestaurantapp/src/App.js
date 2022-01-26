@@ -14,7 +14,6 @@ function App() {
                     <Route path="/" element={<Main/>} exact/>
                     <Route path="/ingredient" element={<Ingredients/>}/>
                 </Routes>
-
             </div>
         </Router>
     )
