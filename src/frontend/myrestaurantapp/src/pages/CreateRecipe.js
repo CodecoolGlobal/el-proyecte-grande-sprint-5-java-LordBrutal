@@ -14,14 +14,14 @@ function CreateRecipe() {
 
     return (<div className="add-ingredient-container">
         <div className="add-ingredient-baackround">
-            <form action="http://localhost:8080/api/add-reciept" method="POST">
+            <form action="http://localhost:8080/api/add-receipt" method="POST">
                 <label className="label-text">
                     Reciept Name
                     <input className="label-input" type="text" name="name" required/>
                 </label>
                 <label className="label-text">
                     Price
-                    <input className="label-input" type="number" name="name" required/>
+                    <input className="label-input" type="number" name="price" required/>
                 </label>
                     {listItems}
                     <button type="button" onClick={add}>+</button>

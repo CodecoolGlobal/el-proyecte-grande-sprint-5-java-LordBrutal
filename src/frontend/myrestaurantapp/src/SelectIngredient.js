@@ -32,12 +32,12 @@ function  SelectIngredient(){
         }
     ]
 
-    return (<div><select className="select-dropdown" name="price" id="slects">
+    return (<div><select className="select-dropdown" name="ingredient" id="slects">
         {json.map((row,index) => (
             <option key={index} value={row.name}>{row.name}</option>
         ))}
     </select>
-        <label><input className="piece-input" type="number" name="name" /></label></div>)
+        <label><input className="piece-input" type="number" name="quantity" /></label></div>)
 }
 
 export default SelectIngredient;
