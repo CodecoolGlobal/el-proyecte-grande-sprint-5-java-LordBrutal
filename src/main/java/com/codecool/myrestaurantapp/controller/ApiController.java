@@ -1,11 +1,23 @@
 package com.codecool.myrestaurantapp.controller;
 
+import com.codecool.myrestaurantapp.model.Customer;
+import com.codecool.myrestaurantapp.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/")
 public class ApiController {
+
+    CustomerService customerService;
+
+    @Autowired
+    public ApiController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @PostMapping(value = "/api/change-order-status")
     public String changeOrderStatus(){
@@ -17,9 +29,9 @@ public class ApiController {
         return "";
     }
 
-    @PostMapping(value = "/api/get-all-customer")
-    public String gettAllCustomer(){
-        return "";
+    @GetMapping(value = "/api/get-all-customer")
+    public Set<Customer> gettAllCustomer(){
+        return customerService.getAllCustomer();
     }
 
     @PostMapping(value = "/api/add-order")
