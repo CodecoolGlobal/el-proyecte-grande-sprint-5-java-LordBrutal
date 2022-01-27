@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -19,7 +20,12 @@ public class ReceiptService {
         this.receiptDaoMem = receiptDaoMem;
     }
 
-    public Receipt addNewReceipt(String name, String[] ingredients, String[] quantity, int price) {
+    public void addNewReceipt(Map<String, String[]> parameterMap) {
+        String name = parameterMap.get("name")[0];
+        String[] ingredients = parameterMap.get("ingredient");
+        String[] quantity = parameterMap.get("quantity");
+        String price = parameterMap.get("price")[0];
+
         HashMap<String, Integer> ingredientsList = new HashMap<>();
 
         for (int i = 0; i < ingredients.length; i++) {
@@ -31,10 +37,9 @@ public class ReceiptService {
                 .ingredients(ingredientsList)
                 .isAvailable(true)
                 .name(name)
-                .price(BigDecimal.valueOf(price))
+                .price(BigDecimal.valueOf(Long.parseLong(price)))
                 .build();
         receiptDaoMem.addNewReceipt(newReceipt);
-        return newReceipt;
     }
 
     public Set<Receipt> getAllReceipt() {
