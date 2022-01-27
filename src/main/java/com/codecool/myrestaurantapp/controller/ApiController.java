@@ -17,6 +17,11 @@ public class ApiController {
         return "";
     }
 
+    @PostMapping(value = "/api/get-all-customer")
+    public String gettAllCustomer(){
+        return "";
+    }
+
     @PostMapping(value = "/api/add-order")
     public String addOrder(){
         return "";
