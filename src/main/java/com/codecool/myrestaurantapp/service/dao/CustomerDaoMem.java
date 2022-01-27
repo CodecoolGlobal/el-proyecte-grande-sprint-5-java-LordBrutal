@@ -36,5 +36,10 @@ public class CustomerDaoMem implements CustomerDAO{
         customers.removeIf(customer -> Objects.equals(customer.getName(), name));
     }
 
+    @Override
+    public Set<Customer> listAllCustomer() {
+        return customers;
+    }
+
 
 }

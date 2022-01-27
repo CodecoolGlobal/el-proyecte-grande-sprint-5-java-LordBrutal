@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class CustomerService {
@@ -32,5 +33,9 @@ public class CustomerService {
         Customer customer = Customer.builder().name(name[0]).email(email[0]).phoneNumber(phoneNumber[0]).address(adress).build();
         System.out.println(customer);
         customerDaoMem.addCustomer(customer);
+    }
+
+    public Set<Customer> getAllCustomer(){
+        return customerDaoMem.listAllCustomer();
     }
 }

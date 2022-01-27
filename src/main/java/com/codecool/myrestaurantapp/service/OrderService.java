@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -36,7 +37,9 @@ public class OrderService {
         return orderDaoMem.getFulfilledOrders();
     }
 
-    public Order addNewOrder(String [] foods, String customerName) {
+    public void addNewOrder(Map<String, String[]> parameterMap) {
+        String[] foods = parameterMap.get("food");
+        String customerName = parameterMap.get("customer")[0];
         List<Receipt> orderElements = getReceipts(foods);
         Customer customer = customerDaoMem.findCustomer(customerName);
         Order newOrder = Order.builder()
@@ -45,8 +48,8 @@ public class OrderService {
                 .orderTime(LocalDateTime.now())
                 .customer(customer)
                 .build();
+        newOrder.countTotalPrice();
         orderDaoMem.addOrder(newOrder);
-        return newOrder;
     }
 
     private List<Receipt> getReceipts(String[] foods) {
@@ -65,12 +68,11 @@ public class OrderService {
         orderDaoMem.deleteOrder(orderId);
     }
 
-    public Set<Order> updateOrder(int oderId, String[] foods) {
-        Order orderToUpdate = orderDaoMem.getOrderById(oderId);
-        List<Receipt> newFoods = getReceipts(foods);
+    public void updateOrder(String oderId, Map<String, String[]> parameterMap) {
+        Order orderToUpdate = orderDaoMem.getOrderById(Integer.parseInt(oderId));
+        List<Receipt> newFoods = getReceipts(parameterMap.get("food"));
         orderToUpdate.getFoods().addAll(newFoods);
-
-        return getActiveOrders();
+        orderToUpdate.countTotalPrice();
     }
 
     public Set<Order> changeOrderStatus(int orderId) {
