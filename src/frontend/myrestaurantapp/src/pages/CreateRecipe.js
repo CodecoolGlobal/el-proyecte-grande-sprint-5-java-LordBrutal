@@ -17,12 +17,12 @@ function CreateRecipe() {
             <form action="http://localhost:8080/api/add-receipt" method="POST">
                 <label className="label-text">
                     Reciept Name
-                    <input className="label-input" type="text" name="name" required/>
-                </label>
+                    <br/><input className="label-input" type="text" name="name" required/>
+                </label><br/>
                 <label className="label-text">
                     Price
-                    <input className="label-input" type="number" name="price" required/>
-                </label>
+                    <br/><input className="label-input" type="number" name="price" required/>
+                </label><br/>
                     {listItems}
                     <button type="button" className="add-button" onClick={add}>+</button>
 
