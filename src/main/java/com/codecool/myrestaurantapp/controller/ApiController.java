@@ -37,9 +37,9 @@ public class ApiController {
     /**Ingredient related endpoints*/
 
     @PostMapping(value = "/api/add-ingredient")
-    public String addIngredient(HttpServletRequest request){
+    public void addIngredient(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ingredientsService.addIngredient(request.getParameterMap());
-        return "";
+        response.sendRedirect("http://localhost:3000/");
     }
 
     @GetMapping(value = "/api/get-all-ingredient")
