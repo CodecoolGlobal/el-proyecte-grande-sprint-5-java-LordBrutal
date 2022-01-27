@@ -1,103 +1,139 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,700;1,400&display=swap');*{
-  font-family: 'Public Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,700;1,400&display=swap');
+
+* {
+    font-family: 'Public Sans', sans-serif;
 }
-body{
-  background-image: linear-gradient(to right top, #5e74c2, #0099dc, #00b6c5, #00cb8b, #a9d44f);
-  background-attachment: fixed;
+
+body {
+    background-image: linear-gradient(to right top, #5e74c2, #0099dc, #00b6c5, #00cb8b, #a9d44f);
+    background-attachment: fixed;
 }
 
 .header-navbar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0 50px 0 0;
-  overflow: hidden;
-  background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 50px 0 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
 .header-navbar li {
-  float: right;
+    float: right;
 }
 
 .header-navbar li a {
-  font-weight: bold;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    font-weight: bold;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 .header-navbar li a:hover {
-  background-color: #111;
+    background-color: #111;
 }
 
-.ingredients-hide{
-  display: none;
+.ingredients-hide {
+    display: none;
 }
 
-.ingredients-show{
-  z-index: 100;
-  padding: 0px;
-  display: block;
-}
-.a{
-  position: fixed;
-  margin-top: 30px;
+.ingredients-show {
+    z-index: 100;
+    padding: 0px;
+    display: block;
 }
 
-.center-img{
-  z-index: -10000;
-  text-align: center;
+.a {
+    position: fixed;
+    margin-top: 30px;
 }
 
-.chef-logo{
-  margin: 0 auto;
-  width: 50%;
+.center-img {
+    z-index: -10000;
+    text-align: center;
 }
 
-.add-ingredient-container{
-  margin-top: 120px;
+.chef-logo {
+    margin: 0 auto;
+    width: 50%;
 }
-.add-ingredient-baackround{
-  padding: 50px;
-  width: 230px;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.14);
-  text-align: center;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+
+.add-ingredient-container {
+    margin-top: 120px;
+}
+
+.add-ingredient-baackround {
+    padding: 50px;
+    width: 230px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.14);
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
 
 }
 
-.label-text{
-  font-size: 20px;
+.label-text {
+    font-size: 20px;
 }
 
-.label-input{
-  padding: 2px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-top: 5px;
-  height: 20px;
+.label-input {
+    padding: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    height: 20px;
+    margin-bottom: 10px;
 }
 
-.select-dropdown{
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-top: 5px;
-  height: 20px;
+.select-dropdown {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    height: 20px;
 }
 
-.submit-button{
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-top: 5px;
+.submit-button {
+    padding: 5px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.16);
+    font-size: 17px;
+}
+.submit-button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.36);
 }
 
-.piece-input{
-  width: 40px;
-  padding: 2px 2px 2px 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-top: 5px;
+.piece-input {
+    width: 40px;
+    padding: 2px 2px 2px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.add-user-baackround {
+    padding: 50px;
+    width: 450px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.14);
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+
+}
+
+.add-user-baackround input {
+    width: 100%;
+}
+.add-button{
+    margin-right: 10px;
+    padding: 5px 10px 5px 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.16);
+    font-size: 17px;
 }

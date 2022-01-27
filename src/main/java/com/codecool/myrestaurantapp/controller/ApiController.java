@@ -63,9 +63,9 @@ public class ApiController {
     /**Customer related endpoint*/
 
     @PostMapping(value = "/api/add-customer")
-    public String addNewUser(HttpServletResponse response, HttpServletRequest request){
+    public void addNewCustomer(HttpServletResponse response, HttpServletRequest request) throws IOException {
         customerService.addCustomer(request.getParameterMap());
-        return "";
+        response.sendRedirect("http://localhost:3000/");
     }
 
     @GetMapping(value = "/api/get-all-customer")
