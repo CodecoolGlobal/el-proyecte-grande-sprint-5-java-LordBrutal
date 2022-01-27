@@ -38,15 +38,18 @@ public class OrderDaoMem implements OrderDAO{
 
     @Override
     public void changeOrderStatus(int orderId) {
-        Order fulfilledOrder = null;
-        for (Order activeOrder : activeOrders) {
-            if (orderId==activeOrder.getId()) {
-                fulfilledOrder = activeOrder;
-            }
-        }
+        Order fulfilledOrder = getOrderById(orderId);
+
         if (fulfilledOrder!=null) {
             fulfilledOrders.add(fulfilledOrder);
             activeOrders.remove(fulfilledOrder);
         }
+    }
+
+    @Override
+    public Order getOrderById(int orderId) {
+
+        return activeOrders.stream().filter(order -> order.getId()==orderId).findFirst().orElse(null);
+
     }
 }
