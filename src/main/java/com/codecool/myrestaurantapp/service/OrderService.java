@@ -64,4 +64,17 @@ public class OrderService {
     public void deleteOrder(int orderId) {
         orderDaoMem.deleteOrder(orderId);
     }
+
+    public Set<Order> updateOrder(int oderId, String[] foods) {
+        Order orderToUpdate = orderDaoMem.getOrderById(oderId);
+        List<Receipt> newFoods = getReceipts(foods);
+        orderToUpdate.getFoods().addAll(newFoods);
+
+        return getActiveOrders();
+    }
+
+    public Set<Order> changeOrderStatus(int orderId) {
+        orderDaoMem.changeOrderStatus(orderId);
+        return orderDaoMem.getActiveOrders();
+    }
 }
