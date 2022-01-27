@@ -68,11 +68,11 @@ body{
 
 }
 
-.add-ingredient-container .label-text{
+.label-text{
   font-size: 20px;
 }
 
-.add-ingredient-container .label-input{
+.label-input{
   padding: 2px;
   border: 1px solid black;
   border-radius: 5px;
@@ -80,7 +80,7 @@ body{
   height: 20px;
 }
 
-.add-ingredient-container .select-dropdown{
+.select-dropdown{
   padding: 11px;
   border: 1px solid black;
   border-radius: 5px;
