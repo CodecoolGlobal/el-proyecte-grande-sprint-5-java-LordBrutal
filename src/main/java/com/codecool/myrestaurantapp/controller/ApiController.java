@@ -5,6 +5,8 @@ import com.codecool.myrestaurantapp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
 @CrossOrigin
@@ -25,7 +27,8 @@ public class ApiController {
     }
 
     @PostMapping(value = "/api/add-customer")
-    public String addNewUser(){
+    public String addNewUser(HttpServletResponse response, HttpServletRequest request){
+        customerService.addCustomer(request.getParameterMap());
         return "";
     }
 
