@@ -1,9 +1,43 @@
 function  SelectIngredient(){
-    return (<select className="select-dropdown" name="price">
-        <option value="GRAM">gram</option>
-        <option value="MILLILITRE">milliliter</option>
-        <option value="PIECE">piece</option>
-    </select>)
+    const json = [
+        {
+            "name": "pepper",
+            "price": 200,
+            "quantity": "GRAM"
+        },
+        {
+            "name": "egg",
+            "price": 1400,
+            "quantity": "PIECE"
+        },
+        {
+            "name": "red wine",
+            "price": 5000,
+            "quantity": "MILLILITRE"
+        },
+        {
+            "name": "salt",
+            "price": 200,
+            "quantity": "GRAM"
+        },
+        {
+            "name": "flour",
+            "price": 310,
+            "quantity": "GRAM"
+        },
+        {
+            "name": "beef",
+            "price": 8000,
+            "quantity": "GRAM"
+        }
+    ]
+
+    return (<div><select className="select-dropdown" name="price" id="slects">
+        {json.map((row,index) => (
+            <option key={index} value={row.name}>{row.name}</option>
+        ))}
+    </select>
+        <label><input className="piece-input" type="number" name="name" /></label></div>)
 }
 
 export default SelectIngredient;
