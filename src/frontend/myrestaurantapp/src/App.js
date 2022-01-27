@@ -5,6 +5,7 @@ import "./App.css"
 import Navbar from "./Navbar";
 import Ingredients from "./pages/Ingredients";
 import CreateRecipe from "./pages/CreateRecipe";
+import AddCustomer from "./pages/AddCustomer";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/" element={<Main/>} exact/>
                     <Route path="/ingredient" element={<Ingredients/>}/>
                     <Route path="/create-recipe" element={<CreateRecipe/>}/>
+                    <Route path="/create-customer" element={<AddCustomer/>}/>
                 </Routes>
             </div>
         </Router>
