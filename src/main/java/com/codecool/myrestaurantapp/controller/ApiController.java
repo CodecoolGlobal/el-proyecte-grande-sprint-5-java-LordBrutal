@@ -37,7 +37,7 @@ public class ApiController {
     }
 
     @GetMapping(value = "/api/get-all-customer")
-    public Set<Customer> gettAllCustomer(){
+    public Set<Customer> getAllCustomer(){
         return customerService.getAllCustomer();
     }
 
