@@ -93,3 +93,11 @@ body{
   border-radius: 5px;
   margin-top: 5px;
 }
+
+.piece-input{
+  width: 40px;
+  padding: 2px 2px 2px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
+}
