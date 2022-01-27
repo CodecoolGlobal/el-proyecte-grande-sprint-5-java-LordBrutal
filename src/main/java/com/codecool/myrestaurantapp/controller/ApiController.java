@@ -37,9 +37,9 @@ public class ApiController {
     /**Ingredient related endpoints*/
 
     @PostMapping(value = "/api/add-ingredient")
-    public String addIngredient(HttpServletRequest request){
+    public void addIngredient(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ingredientsService.addIngredient(request.getParameterMap());
-        return "";
+        response.sendRedirect("http://localhost:3000/");
     }
 
     @GetMapping(value = "/api/get-all-ingredient")
@@ -50,9 +50,9 @@ public class ApiController {
     /**Receipt related endpoints*/
 
     @PostMapping(value = "/api/add-receipt")
-    public String addReceipt(HttpServletRequest request){
+    public void addReceipt(HttpServletRequest request, HttpServletResponse response) throws IOException {
         receiptService.addNewReceipt(request.getParameterMap());
-        return "";
+        response.sendRedirect("http://localhost:3000/");
     }
 
     @GetMapping(value = "/api/get-all-receipt")
@@ -63,9 +63,9 @@ public class ApiController {
     /**Customer related endpoint*/
 
     @PostMapping(value = "/api/add-customer")
-    public String addNewUser(HttpServletResponse response, HttpServletRequest request){
+    public void addNewCustomer(HttpServletResponse response, HttpServletRequest request) throws IOException {
         customerService.addCustomer(request.getParameterMap());
-        return "";
+        response.sendRedirect("http://localhost:3000/");
     }
 
     @GetMapping(value = "/api/get-all-customer")
