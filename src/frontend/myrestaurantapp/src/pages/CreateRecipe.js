@@ -23,10 +23,9 @@ function CreateRecipe() {
                     Price
                     <input className="label-input" type="number" name="name" required/>
                 </label>
-                <div>
                     {listItems}
                     <button type="button" onClick={add}>+</button>
-                </div>
+
                 <button className="submit-button" type="submit">Save me</button>
             </form>
         </div>
