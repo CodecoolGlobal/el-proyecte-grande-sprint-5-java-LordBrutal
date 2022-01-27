@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
-public class AppiController {
+public class ApiController {
 
     @CrossOrigin
     @PostMapping(value = "/api/change-order-status")
@@ -25,8 +25,14 @@ public class AppiController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/api/add-reciept")
-    public String addReciept(){
+    @GetMapping(value = "/api/get-all-receipt")
+    public String getAllReceipt() {
+        return "";
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/api/add-receipt")
+    public String addReceipt(){
         return "";
     }
 
@@ -38,7 +44,13 @@ public class AppiController {
 
     @CrossOrigin
     @GetMapping(value = "/api/get-orders")
-    public  String getOrders(){
+    public String getActiveOrders(){
+        return "";
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/api/get-all-ingredient")
+    public  String getAllIngredient(){
         return "";
     }
 

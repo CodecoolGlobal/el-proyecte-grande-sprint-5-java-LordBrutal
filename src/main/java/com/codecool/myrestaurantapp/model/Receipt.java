@@ -14,7 +14,7 @@ public class Receipt {
 
     private int id;
     private String name;
-    private HashMap<Ingredient, Integer> ingredients;
+    private HashMap<String, Integer> ingredients;
     private BigDecimal price;
     private boolean isAvailable;
 }
