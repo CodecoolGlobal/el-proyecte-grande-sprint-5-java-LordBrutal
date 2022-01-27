@@ -37,14 +37,7 @@ public class OrderService {
     }
 
     public Order addNewOrder(String [] foods, String customerName) {
-        List<Receipt> orderElements = new ArrayList<>();
-        for (String food : foods) {
-            for (Receipt receipt : receiptDaoMem.getAllReceipt()) {
-                if (food.equals(receipt.getName())) {
-                    orderElements.add(receipt);
-                }
-            }
-        }
+        List<Receipt> orderElements = getReceipts(foods);
         Customer customer = customerDaoMem.findCustomer(customerName);
         Order newOrder = Order.builder()
                 .foods(orderElements)
@@ -54,6 +47,18 @@ public class OrderService {
                 .build();
         orderDaoMem.addOrder(newOrder);
         return newOrder;
+    }
+
+    private List<Receipt> getReceipts(String[] foods) {
+        List<Receipt> orderElements = new ArrayList<>();
+        for (String food : foods) {
+            for (Receipt receipt : receiptDaoMem.getAllReceipt()) {
+                if (food.equals(receipt.getName())) {
+                    orderElements.add(receipt);
+                }
+            }
+        }
+        return orderElements;
     }
 
     public void deleteOrder(int orderId) {
