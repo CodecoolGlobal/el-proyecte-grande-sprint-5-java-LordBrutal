@@ -1,7 +1,9 @@
 package com.codecool.myrestaurantapp.controller;
 
 import com.codecool.myrestaurantapp.model.Customer;
+import com.codecool.myrestaurantapp.model.Ingredient;
 import com.codecool.myrestaurantapp.service.CustomerService;
+import com.codecool.myrestaurantapp.service.IngredientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +17,12 @@ import java.util.Set;
 public class ApiController {
 
     CustomerService customerService;
+    IngredientsService ingredientsService;
 
     @Autowired
-    public ApiController(CustomerService customerService) {
+    public ApiController(CustomerService customerService, IngredientsService ingredientsService) {
         this.customerService = customerService;
+        this.ingredientsService = ingredientsService;
     }
 
     @PostMapping(value = "/api/change-order-status")
@@ -63,8 +67,8 @@ public class ApiController {
     }
 
     @GetMapping(value = "/api/get-all-ingredient")
-    public  String getAllIngredient(){
-        return "";
+    public Set<Ingredient> getAllIngredient(){
+        return ingredientsService.getAllIngredients();
     }
 
 
