@@ -57,7 +57,8 @@ public class ApiController {
     }
 
     @PostMapping(value = "/api/add-ingredient")
-    public String addIngredient(){
+    public String addIngredient(HttpServletRequest request){
+        ingredientsService.addIngredient(request.getParameterMap());
         return "";
     }
 
