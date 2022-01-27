@@ -12,7 +12,7 @@ public class ApiController {
         return "";
     }
 
-    @PostMapping(value = "/api/add-user")
+    @PostMapping(value = "/api/add-customer")
     public String addNewUser(){
         return "";
     }
