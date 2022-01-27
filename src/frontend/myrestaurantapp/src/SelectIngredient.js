@@ -24,7 +24,7 @@ function SelectIngredient() {
                 <option key={index} value={row.name}>{row.name}</option>
             ))}
         </select>
-            <label><input className="piece-input" type="number" name="quantity"/></label></div>)
+            <label><input className="piece-input" type="number" name="quantity" required/></label></div>)
     }
     return (<div><select className="select-dropdown" name="ingredient" id="slects">
             <option  value="">""</option>
