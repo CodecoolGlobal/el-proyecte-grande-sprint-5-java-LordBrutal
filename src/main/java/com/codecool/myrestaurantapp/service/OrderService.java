@@ -37,14 +37,7 @@ public class OrderService {
     }
 
     public Order addNewOrder(String [] foods, String customerName) {
-        List<Receipt> orderElements = new ArrayList<>();
-        for (String food : foods) {
-            for (Receipt receipt : receiptDaoMem.getAllReceipt()) {
-                if (food.equals(receipt.getName())) {
-                    orderElements.add(receipt);
-                }
-            }
-        }
+        List<Receipt> orderElements = getReceipts(foods);
         Customer customer = customerDaoMem.findCustomer(customerName);
         Order newOrder = Order.builder()
                 .foods(orderElements)
@@ -56,7 +49,32 @@ public class OrderService {
         return newOrder;
     }
 
+    private List<Receipt> getReceipts(String[] foods) {
+        List<Receipt> orderElements = new ArrayList<>();
+        for (String food : foods) {
+            for (Receipt receipt : receiptDaoMem.getAllReceipt()) {
+                if (food.equals(receipt.getName())) {
+                    orderElements.add(receipt);
+                }
+            }
+        }
+        return orderElements;
+    }
+
     public void deleteOrder(int orderId) {
         orderDaoMem.deleteOrder(orderId);
+    }
+
+    public Set<Order> updateOrder(int oderId, String[] foods) {
+        Order orderToUpdate = orderDaoMem.getOrderById(oderId);
+        List<Receipt> newFoods = getReceipts(foods);
+        orderToUpdate.getFoods().addAll(newFoods);
+
+        return getActiveOrders();
+    }
+
+    public Set<Order> changeOrderStatus(int orderId) {
+        orderDaoMem.changeOrderStatus(orderId);
+        return orderDaoMem.getActiveOrders();
     }
 }

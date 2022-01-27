@@ -19,13 +19,13 @@ public class ReceiptService {
         this.receiptDaoMem = receiptDaoMem;
     }
 
-    public Receipt addNewReceipt(String name, String[] ingredients, int price) {
+    public Receipt addNewReceipt(String name, String[] ingredients, String[] quantity, int price) {
         HashMap<String, Integer> ingredientsList = new HashMap<>();
+
         for (int i = 0; i < ingredients.length; i++) {
-            if (i % 2 == 0) {
-                ingredientsList.put(ingredients[i], Integer.valueOf(ingredients[i+1]));
-            }
+            ingredientsList.put(ingredients[i], Integer.valueOf(quantity[i]));
         }
+
         Receipt newReceipt = Receipt.builder()
                 .id(receiptDaoMem.getAllReceipt().size()+1)
                 .ingredients(ingredientsList)

@@ -10,4 +10,5 @@ public interface OrderDAO {
     Set<Order> getFulfilledOrders();
     void deleteOrder(int orderId);
     void changeOrderStatus(int orderId);
+    Order getOrderById(int orderId);
 }
