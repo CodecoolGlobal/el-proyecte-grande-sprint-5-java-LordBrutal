@@ -10,7 +10,7 @@ function Ingredients() {
                         <input className="label-input" type="text" name="price" required/>
                     </label><br/>
                     <label className="label-text">Type<br/>
-                        <select className="select-dropdown" name="price">
+                        <select className="select-dropdown" name="type">
                             <option value="GRAM">gram</option>
                             <option value="MILLILITRE">milliliter</option>
                             <option value="PIECE">piece</option>
