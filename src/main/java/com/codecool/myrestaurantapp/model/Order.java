@@ -20,6 +20,7 @@ public class Order {
     private BigDecimal totalPrice;
 
     public void countTotalPrice() {
+        totalPrice = BigDecimal.ZERO;
         for (Receipt food : foods) {
             totalPrice = totalPrice.add(food.getPrice());
         }
