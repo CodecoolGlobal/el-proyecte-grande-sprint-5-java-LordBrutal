@@ -55,4 +55,8 @@ public class OrderService {
         orderDaoMem.addOrder(newOrder);
         return newOrder;
     }
+
+    public void deleteOrder(int orderId) {
+        orderDaoMem.deleteOrder(orderId);
+    }
 }
