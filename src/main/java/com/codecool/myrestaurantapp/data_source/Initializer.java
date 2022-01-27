@@ -52,14 +52,15 @@ public class Initializer {
         beefStewIngredients.put(ingredientTwo.getName(), 3);
         beefStewIngredients.put(ingredientSix.getName(), 200);
         beefStewIngredients.put(ingredientFour.getName(), 5);
-        Receipt receiptFriedEggs = Receipt.builder().id(receiptDaoMem.getAllReceipt().size()+1).name("Fried eggs").isAvailable(true).ingredients(friedEggIngredients).build();
+        Receipt receiptFriedEggs = Receipt.builder().id(receiptDaoMem.getAllReceipt().size()+1).name("Fried eggs").isAvailable(true).ingredients(friedEggIngredients).price(BigDecimal.valueOf(1200)).build();
         receiptDaoMem.addNewReceipt(receiptFriedEggs);
-        Receipt receiptBeefStew = Receipt.builder().id(receiptDaoMem.getAllReceipt().size()+1).name("Beef stew").isAvailable(true).ingredients(beefStewIngredients).build();
+        Receipt receiptBeefStew = Receipt.builder().id(receiptDaoMem.getAllReceipt().size()+1).name("Beef stew").isAvailable(true).ingredients(beefStewIngredients).price(BigDecimal.valueOf(2500)).build();
         receiptDaoMem.addNewReceipt(receiptBeefStew);
         List<Receipt> orderReceipt = new ArrayList<>();
         orderReceipt.add(receiptBeefStew);
         orderReceipt.add(receiptFriedEggs);
         Order order1 = Order.builder().id(orderDaoMem.getStoredOrdersNumber()).orderTime(LocalDateTime.now()).customer(customerOne).foods(orderReceipt).build();
+        order1.countTotalPrice();
         orderDaoMem.addOrder(order1);
 
 
