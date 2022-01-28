@@ -20,7 +20,7 @@ function CreateRecipe() {
                     <br/><input className="label-input" type="text" name="name" autoComplete="off" required/>
                 </label><br/>
                 <label className="label-text">
-                    Price
+                    Price in HUF
                     <br/><input className="label-input" type="number" name="price" autoComplete="off" required/>
                 </label><br/>
                     {listItems}
