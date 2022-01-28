@@ -84,7 +84,7 @@ public class ApiController {
     @PostMapping(value = "/api/add-order")
     public void addOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
         orderService.addNewOrder(request.getParameterMap());
-        response.sendRedirect("/");
+        response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
     @GetMapping(value = "/api/get-orders")
