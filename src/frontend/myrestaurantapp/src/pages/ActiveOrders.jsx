@@ -28,7 +28,8 @@ function ActiveOrders(props) {
                 <h1 className={"page-title"}>Active orders</h1>
                 <ul>
                     {jsonResult.data.map((order, index) => (
-                        <li key={index}><p>Order number: {order.id + 1}</p>
+                        <li className={"order-container"} key={index}><p>Order number: {order.id + 1}</p>
+                            <p>Order time: {order.formattedDateTime}</p>
                             {order.customer.name} ( {order.customer.address.cityName}, {order.customer.address.streetName} {order.customer.address.houseNumber})
                             <p>Phone number: {order.customer.phoneNumber}</p>
                             <p>Ordered foods: </p>
