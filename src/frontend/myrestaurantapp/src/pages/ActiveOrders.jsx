@@ -21,10 +21,10 @@ function ActiveOrders(props) {
             )
     },[]);
 
-
     if (jsonResult.isLoaded && jsonResult.error === undefined) {
         return (
-            <div className={"order-container"}>
+            <div >
+                <h1 className={"page-title"}>Active orders</h1>
                 <ul>
                     {jsonResult.data.map((order, index) => (
                         <li key={index}><p>Order number: {order.id + 1}</p>
