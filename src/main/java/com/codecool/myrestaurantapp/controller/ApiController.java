@@ -75,15 +75,16 @@ public class ApiController {
 
     /**Order related endpoints*/
 
-    @PostMapping(value = "/api/change-order-status/{orderId}")
-    public Set<Order> changeOrderStatus(@PathVariable String orderId){
-        return orderService.changeOrderStatus(Integer.parseInt(orderId));
+    @GetMapping(value = "/api/change-order-status/{orderId}")
+    public void changeOrderStatus(@PathVariable String orderId, HttpServletResponse response) throws IOException {
+        orderService.changeOrderStatus(Integer.parseInt(orderId));
+        response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
     @PostMapping(value = "/api/add-order")
     public void addOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
         orderService.addNewOrder(request.getParameterMap());
-        response.sendRedirect("/");
+        response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
     @GetMapping(value = "/api/get-orders")
@@ -94,7 +95,7 @@ public class ApiController {
     @GetMapping(value = "/api/delete-order/{orderId}")
     public void deleteOrder(@PathVariable String orderId, HttpServletResponse response) throws IOException {
         orderService.deleteOrder(Integer.parseInt(orderId));
-        response.sendRedirect("/");
+        response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
     @PostMapping(value = "/api/update-order/{orderId}")

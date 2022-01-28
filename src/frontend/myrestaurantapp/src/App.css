@@ -73,6 +73,15 @@ body {
 
 }
 
+.order-container {
+    padding: 50px;
+    width: 80%;
+    margin: 2em auto;
+    background-color: rgba(255, 255, 255, 0.14);
+    text-align: left;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+}
+
 .label-text {
     font-size: 20px;
 }
@@ -136,4 +145,23 @@ body {
     color: white;
     background-color: rgba(0, 0, 0, 0.16);
     font-size: 17px;
+}
+.add-button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.36);
+}
+
+ul {
+    list-style: none;
+}
+
+.order-button {
+    float: right;
+}
+button a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.page-title {
+    text-align: center;
 }

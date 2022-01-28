@@ -44,11 +44,12 @@ public class OrderService {
         Customer customer = customerDaoMem.findCustomer(customerName);
         Order newOrder = Order.builder()
                 .foods(orderElements)
-                .id(orderDaoMem.getStoredOrdersNumber()+1)
+                .id(orderDaoMem.getStoredOrdersNumber())
                 .orderTime(LocalDateTime.now())
                 .customer(customer)
                 .build();
         newOrder.countTotalPrice();
+        newOrder.formatDate();
         orderDaoMem.addOrder(newOrder);
     }
 

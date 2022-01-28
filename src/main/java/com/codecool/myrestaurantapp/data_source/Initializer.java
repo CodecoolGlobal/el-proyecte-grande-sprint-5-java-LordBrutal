@@ -61,6 +61,7 @@ public class Initializer {
         orderReceipt.add(receiptFriedEggs);
         Order order1 = Order.builder().id(orderDaoMem.getStoredOrdersNumber()).orderTime(LocalDateTime.now()).customer(customerOne).foods(orderReceipt).build();
         order1.countTotalPrice();
+        order1.formatDate();
         orderDaoMem.addOrder(order1);
 
 
