@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import OrderFoodsList from "../components/OrderFoodsList";
+import Button from "../components/Button";
 
 
 function ActiveOrders(props) {
@@ -33,6 +34,8 @@ function ActiveOrders(props) {
                             <p>Ordered foods: </p>
                             <OrderFoodsList data={order.foods}/>
                             <p>Total price: {order.totalPrice}</p>
+                            <Button className={"order-button add-button"} text={"Delete order"} url={`http://localhost:8080/api/delete-order/${order.id}`}/>
+                            <Button className={"order-button add-button"} text={"Fulfilled"} url={`http://localhost:8080/api/change-order-status/${order.id}`}/>
                         </li>
                     ))}
                 </ul>
