@@ -75,9 +75,10 @@ public class ApiController {
 
     /**Order related endpoints*/
 
-    @PostMapping(value = "/api/change-order-status/{orderId}")
-    public Set<Order> changeOrderStatus(@PathVariable String orderId){
-        return orderService.changeOrderStatus(Integer.parseInt(orderId));
+    @GetMapping(value = "/api/change-order-status/{orderId}")
+    public void changeOrderStatus(@PathVariable String orderId, HttpServletResponse response) throws IOException {
+        orderService.changeOrderStatus(Integer.parseInt(orderId));
+        response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
     @PostMapping(value = "/api/add-order")
