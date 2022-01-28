@@ -95,7 +95,7 @@ public class ApiController {
     @GetMapping(value = "/api/delete-order/{orderId}")
     public void deleteOrder(@PathVariable String orderId, HttpServletResponse response) throws IOException {
         orderService.deleteOrder(Integer.parseInt(orderId));
-        response.sendRedirect("/");
+        response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
     @PostMapping(value = "/api/update-order/{orderId}")
