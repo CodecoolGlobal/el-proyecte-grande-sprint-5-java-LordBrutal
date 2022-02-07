@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,4 +21,7 @@ public class CustomerEntity {
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntity address;
+
+    @OneToMany(mappedBy = "customer")
+    List<OrderEntity> orders;
 }
