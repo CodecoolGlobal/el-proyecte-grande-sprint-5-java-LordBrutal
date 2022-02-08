@@ -41,10 +41,8 @@ public class CustomerService {
         List<CustomerEntity> customerEntities = customerEntityRepository.findAll();
         Set<Customer> customers = new HashSet<>();
         for (CustomerEntity customerEntity: customerEntities) {
-            AddressEntity addressEntity = customerEntity.getAddress();
-            Address customerAdress = Address.builder().cityName(addressEntity.getCityName()).streetName(addressEntity.getStreetName()).houseNumber(addressEntity.getHouseNumber()).build();
-            Customer customerConvert = Customer.builder().name(customerEntity.getName()).email(customerEntity.getEmail()).phoneNumber(customerEntity.getPhoneNumber()).address(customerAdress).build();
-            customers.add(customerConvert);
+            Customer customer = new Customer(customerEntity);
+            customers.add(customer);
         }
         return customers;
     }
