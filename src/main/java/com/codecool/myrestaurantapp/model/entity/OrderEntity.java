@@ -1,8 +1,5 @@
 package com.codecool.myrestaurantapp.model.entity;
 
-
-import com.codecool.myrestaurantapp.model.Customer;
-import com.codecool.myrestaurantapp.model.Receipt;
 import lombok.Getter;
 import lombok.Setter;
 
