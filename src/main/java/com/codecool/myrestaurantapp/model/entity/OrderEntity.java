@@ -25,11 +25,10 @@ public class OrderEntity {
     private BigDecimal totalPrice;
     private OrderStatus orderStatus;
 
-    public OrderEntity(List<RecipeEntity> foods, CustomerEntity customer, LocalDateTime orderTime, BigDecimal totalPrice, OrderStatus orderStatus) {
+    public OrderEntity(List<RecipeEntity> foods, CustomerEntity customer, LocalDateTime orderTime, OrderStatus orderStatus) {
         this.foods = foods;
         this.customer = customer;
         this.orderTime = orderTime;
-        this.totalPrice = totalPrice;
         this.orderStatus = orderStatus;
     }
 
