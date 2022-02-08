@@ -1,28 +1,34 @@
 package com.codecool.myrestaurantapp.service;
 
 import com.codecool.myrestaurantapp.model.Ingredient;
+import com.codecool.myrestaurantapp.model.entity.IngredientEntity;
 import com.codecool.myrestaurantapp.model.type.UnitOfMeasureType;
-import com.codecool.myrestaurantapp.service.dao.IngredientsDaoMem;
+import com.codecool.myrestaurantapp.repository.IngredientEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class IngredientsService{
 
-    IngredientsDaoMem ingredientsDaoMem;
+    IngredientEntityRepository ingredientEntityRepository;
+
 
     @Autowired
-    public IngredientsService(IngredientsDaoMem ingredientsDaoMem) {
-        this.ingredientsDaoMem = ingredientsDaoMem;
+    public IngredientsService(IngredientEntityRepository ingredientEntityRepository) {
+        this.ingredientEntityRepository = ingredientEntityRepository;
     }
 
     public Set<Ingredient> getAllIngredients(){
-        return ingredientsDaoMem.getAllingredients();
+        Set<Ingredient> ingredients = new HashSet<>();
+        List<IngredientEntity> ingredientEntityList = ingredientEntityRepository.findAll();
+        for (IngredientEntity ingredientEntity: ingredientEntityList) {
+            Ingredient ingredient = new Ingredient(ingredientEntity);
+            ingredients.add(ingredient);
+        }
+        return ingredients;
     }
 
     private UnitOfMeasureType findType(String typename){
@@ -41,10 +47,7 @@ public class IngredientsService{
         String[] type = parameters.get("type");
         BigDecimal price =  BigDecimal.valueOf(Long.parseLong(priceAsString[0]));
         UnitOfMeasureType ingredientType = findType(type[0]);
-        ingredientsDaoMem.addIngredient(Ingredient.builder()
-                .name(ingredientName[0])
-                .price(price)
-                .quantity(ingredientType)
-                .build());
+        IngredientEntity ingredientEntity = new IngredientEntity(ingredientName[0],price,ingredientType);
+        ingredientEntityRepository.save(ingredientEntity);
     }
 }

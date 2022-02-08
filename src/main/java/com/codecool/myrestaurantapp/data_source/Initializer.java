@@ -32,12 +32,12 @@ public class Initializer {
         customerDaoMem.addCustomer(customerOne);
         customerDaoMem.addCustomer(customerTwo);
         customerDaoMem.addCustomer(customerThree);
-        Ingredient ingredientOne = Ingredient.builder().name("salt").price(BigDecimal.valueOf(200)).quantity(UnitOfMeasureType.GRAM).build();
-        Ingredient ingredientTwo = Ingredient.builder().name("pepper").price(BigDecimal.valueOf(200)).quantity(UnitOfMeasureType.GRAM).build();
-        Ingredient ingredientThree = Ingredient.builder().name("egg").price(BigDecimal.valueOf(1400)).quantity(UnitOfMeasureType.PIECE).build();
-        Ingredient ingredientFour = Ingredient.builder().name("red wine").price(BigDecimal.valueOf(5000)).quantity(UnitOfMeasureType.MILLILITRE).build();
-        Ingredient ingredientFive = Ingredient.builder().name("flour").price(BigDecimal.valueOf(310)).quantity(UnitOfMeasureType.GRAM).build();
-        Ingredient ingredientSix = Ingredient.builder().name("beef").price(BigDecimal.valueOf(8000)).quantity(UnitOfMeasureType.GRAM).build();
+        Ingredient ingredientOne = Ingredient.builder().name("salt").price(BigDecimal.valueOf(200)).unitType(UnitOfMeasureType.GRAM).build();
+        Ingredient ingredientTwo = Ingredient.builder().name("pepper").price(BigDecimal.valueOf(200)).unitType(UnitOfMeasureType.GRAM).build();
+        Ingredient ingredientThree = Ingredient.builder().name("egg").price(BigDecimal.valueOf(1400)).unitType(UnitOfMeasureType.PIECE).build();
+        Ingredient ingredientFour = Ingredient.builder().name("red wine").price(BigDecimal.valueOf(5000)).unitType(UnitOfMeasureType.MILLILITRE).build();
+        Ingredient ingredientFive = Ingredient.builder().name("flour").price(BigDecimal.valueOf(310)).unitType(UnitOfMeasureType.GRAM).build();
+        Ingredient ingredientSix = Ingredient.builder().name("beef").price(BigDecimal.valueOf(8000)).unitType(UnitOfMeasureType.GRAM).build();
         ingredientsDaoMem.addIngredient(ingredientOne);
         ingredientsDaoMem.addIngredient(ingredientTwo);
         ingredientsDaoMem.addIngredient(ingredientThree);
