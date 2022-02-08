@@ -2,20 +2,26 @@ package com.codecool.myrestaurantapp.service;
 
 import com.codecool.myrestaurantapp.model.Address;
 import com.codecool.myrestaurantapp.model.Customer;
+import com.codecool.myrestaurantapp.model.entity.AddressEntity;
+import com.codecool.myrestaurantapp.model.entity.CustomerEntity;
+import com.codecool.myrestaurantapp.repository.AddressEntityRepository;
+import com.codecool.myrestaurantapp.repository.CustomerEntityRepository;
 import com.codecool.myrestaurantapp.service.dao.CustomerDaoMem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CustomerService {
-    CustomerDaoMem customerDaoMem;
+
+    CustomerEntityRepository customerEntityRepository;
+    AddressEntityRepository addressEntityRepository;
 
     @Autowired
-    public CustomerService(CustomerDaoMem customerDaoMem) {
-        this.customerDaoMem = customerDaoMem;
+    public CustomerService(CustomerEntityRepository customerEntityRepository, AddressEntityRepository addressEntityRepository) {
+        this.customerEntityRepository = customerEntityRepository;
+        this.addressEntityRepository = addressEntityRepository;
     }
 
     public void addCustomer(Map<String, String[]> parameters){
@@ -25,17 +31,19 @@ public class CustomerService {
         String[] cityName = parameters.get("cityName");
         String[] streetName = parameters.get("streetName");
         String[] houseNumberString =parameters.get("houseNumber");
-        Address adress = Address.builder()
-                .cityName(cityName[0])
-                .streetName(streetName[0])
-                .houseNumber(Integer.parseInt(houseNumberString[0]))
-                .build();
-        Customer customer = Customer.builder().name(name[0]).email(email[0]).phoneNumber(phoneNumber[0]).address(adress).build();
-        System.out.println(customer);
-        customerDaoMem.addCustomer(customer);
+        AddressEntity addressEntity = new AddressEntity(cityName[0],streetName[0],Integer.parseInt(houseNumberString[0]));
+        addressEntity = addressEntityRepository.save(addressEntity);
+        CustomerEntity customerEntity = new CustomerEntity(name[0],email[0],phoneNumber[0], addressEntity);
+        customerEntityRepository.save(customerEntity);
     }
 
     public Set<Customer> getAllCustomer(){
-        return customerDaoMem.listAllCustomer();
+        List<CustomerEntity> customerEntities = customerEntityRepository.findAll();
+        Set<Customer> customers = new HashSet<>();
+        for (CustomerEntity customerEntity: customerEntities) {
+            Customer customer = new Customer(customerEntity);
+            customers.add(customer);
+        }
+        return customers;
     }
 }

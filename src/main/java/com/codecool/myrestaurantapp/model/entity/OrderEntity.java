@@ -1,8 +1,5 @@
 package com.codecool.myrestaurantapp.model.entity;
 
-
-import com.codecool.myrestaurantapp.model.Customer;
-import com.codecool.myrestaurantapp.model.Receipt;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,14 +25,20 @@ public class OrderEntity {
     private BigDecimal totalPrice;
     private OrderStatus orderStatus;
 
-    public OrderEntity(List<RecipeEntity> foods, CustomerEntity customer, LocalDateTime orderTime, BigDecimal totalPrice, OrderStatus orderStatus) {
+    public OrderEntity(List<RecipeEntity> foods, CustomerEntity customer, LocalDateTime orderTime, OrderStatus orderStatus) {
         this.foods = foods;
         this.customer = customer;
         this.orderTime = orderTime;
-        this.totalPrice = totalPrice;
         this.orderStatus = orderStatus;
     }
 
     public OrderEntity() {
+    }
+
+    public void countTotalPrice() {
+        totalPrice = BigDecimal.ZERO;
+        for (RecipeEntity food : foods) {
+            totalPrice = totalPrice.add(food.getPrice());
+        }
     }
 }

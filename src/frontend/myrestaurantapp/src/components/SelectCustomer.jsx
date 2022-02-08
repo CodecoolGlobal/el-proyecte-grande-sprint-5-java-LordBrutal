@@ -21,7 +21,7 @@ function SelectCustomer() {
     if (customer.isLoaded && customer.error === undefined){
         return (<div><select className="select-dropdown" name="customer" id="selects">
             {customer.data.map((row, index) => (
-                <option key={index} value={row.name}>{row.name} ({row.phoneNumber})</option>
+                <option key={index} value={row.id}>{row.name} ({row.phoneNumber})</option>
             ))}
         </select></div>)
     }

@@ -2,6 +2,6 @@ package com.codecool.myrestaurantapp.model.entity;
 
 public enum OrderStatus {
     COMPLETED,
-    DONE,
+    IN_PROGRESS,
     CANCELLED;
 }
