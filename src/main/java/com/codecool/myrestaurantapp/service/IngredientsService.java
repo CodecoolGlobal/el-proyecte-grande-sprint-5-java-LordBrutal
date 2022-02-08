@@ -47,10 +47,7 @@ public class IngredientsService{
         String[] type = parameters.get("type");
         BigDecimal price =  BigDecimal.valueOf(Long.parseLong(priceAsString[0]));
         UnitOfMeasureType ingredientType = findType(type[0]);
-        ingredientsDaoMem.addIngredient(Ingredient.builder()
-                .name(ingredientName[0])
-                .price(price)
-                .quantity(ingredientType)
-                .build());
+        IngredientEntity ingredientEntity = new IngredientEntity(ingredientName[0],price,ingredientType);
+        ingredientEntityRepository.save(ingredientEntity);
     }
 }
