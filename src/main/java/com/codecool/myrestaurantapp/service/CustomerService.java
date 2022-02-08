@@ -31,14 +31,10 @@ public class CustomerService {
         String[] cityName = parameters.get("cityName");
         String[] streetName = parameters.get("streetName");
         String[] houseNumberString =parameters.get("houseNumber");
-        Address adress = Address.builder()
-                .cityName(cityName[0])
-                .streetName(streetName[0])
-                .houseNumber(Integer.parseInt(houseNumberString[0]))
-                .build();
-        Customer customer = Customer.builder().name(name[0]).email(email[0]).phoneNumber(phoneNumber[0]).address(adress).build();
-        System.out.println(customer);
-        customerDaoMem.addCustomer(customer);
+        AddressEntity addressEntity = new AddressEntity(cityName[0],streetName[0],Integer.parseInt(houseNumberString[0]));
+        addressEntity = addressEntityRepository.save(addressEntity);
+        CustomerEntity customerEntity = new CustomerEntity(name[0],email[0],phoneNumber[0], addressEntity);
+        customerEntityRepository.save(customerEntity);
     }
 
     public Set<Customer> getAllCustomer(){
