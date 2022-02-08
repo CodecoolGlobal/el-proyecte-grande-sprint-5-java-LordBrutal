@@ -10,12 +10,14 @@ import lombok.Data;
 @Builder
 public class Customer {
 
+    private Long id;
     private String name;
     private String email;
     private String phoneNumber;
     private Address address;
 
     public Customer(CustomerEntity customerEntity) {
+        this.id = customerEntity.getId();
         this.name = customerEntity.getName();
         this.email = customerEntity.getEmail();
         this.address = new Address(customerEntity.getAddress());
