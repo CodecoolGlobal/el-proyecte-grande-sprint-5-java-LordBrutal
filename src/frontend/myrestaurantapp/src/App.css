@@ -78,12 +78,12 @@ body {
 }
 
 .order-container {
-    padding: 50px;
-    width: 80%;
-    margin: 2em auto;
-    background-color: rgba(255, 255, 255, 0.14);
+    padding: 10px 10px 50px 10px;
+    /*width: 80%;*/
+    /*margin: 2em auto;*/
+    /*background-color: rgba(255, 255, 255, 0.14);*/
     text-align: left;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+    /*box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);*/
 }
 
 .label-text {
