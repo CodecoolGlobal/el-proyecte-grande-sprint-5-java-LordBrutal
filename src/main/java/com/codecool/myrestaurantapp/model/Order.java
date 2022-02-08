@@ -14,8 +14,8 @@ import java.util.List;
 @Builder
 public class Order {
 
-    private int id;
-    private List<Receipt> foods;
+    private Long id;
+    private List<RecipeOverview> foods;
     private Customer customer;
     private LocalDateTime orderTime;
     private BigDecimal totalPrice;
