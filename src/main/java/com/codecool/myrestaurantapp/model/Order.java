@@ -1,5 +1,6 @@
 package com.codecool.myrestaurantapp.model;
 
+import com.codecool.myrestaurantapp.model.entity.OrderEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,13 +22,15 @@ public class Order {
     private BigDecimal totalPrice;
     private String formattedDateTime;
 
-    public void countTotalPrice() {
-        totalPrice = BigDecimal.ZERO;
-        for (Receipt food : foods) {
-            totalPrice = totalPrice.add(food.getPrice());
-        }
+    public Order(OrderEntity orderEntity) {
+        this.id = orderEntity.getId();
+        this.foods = orderEntity.getFoods().stream().map(RecipeOverview::new).toList();
+        this.customer = new Customer(orderEntity.getCustomer());
+        this.orderTime = orderEntity.getOrderTime();
+        this.totalPrice = orderEntity.getTotalPrice();
+        formatDate();
     }
-    public void formatDate() {
+    private void formatDate() {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     formattedDateTime = orderTime.format(format);
     }
