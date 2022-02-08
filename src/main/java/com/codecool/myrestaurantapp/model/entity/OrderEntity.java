@@ -34,4 +34,11 @@ public class OrderEntity {
 
     public OrderEntity() {
     }
+
+    public void countTotalPrice() {
+        totalPrice = BigDecimal.ZERO;
+        for (RecipeEntity food : foods) {
+            totalPrice = totalPrice.add(food.getPrice());
+        }
+    }
 }
