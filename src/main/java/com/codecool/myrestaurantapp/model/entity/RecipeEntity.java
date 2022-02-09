@@ -1,5 +1,6 @@
 package com.codecool.myrestaurantapp.model.entity;
 
+import com.codecool.myrestaurantapp.model.Ingredient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
