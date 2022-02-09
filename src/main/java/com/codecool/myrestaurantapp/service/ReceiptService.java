@@ -32,20 +32,25 @@ public class ReceiptService {
         String[] quantity = parameterMap.get("quantity");
         String price = parameterMap.get("price")[0];
 
-        HashMap<String, Integer> ingredientsList = new HashMap<>();
+        RecipeEntity newRecipe = new RecipeEntity();
+        newRecipe.setAvailable(true);
+        newRecipe.setName(name);
+        newRecipe.setPrice(BigDecimal.valueOf(Long.parseLong(price)));
+        List<RecipeIngredientEntity> recipeIngredientEntityList = new ArrayList<>();
+        newRecipe.setIngredientEntityList(recipeIngredientEntityList);
+
+        newRecipe = recipeEntityrepository.save(newRecipe);
 
         for (int i = 0; i < ingredients.length; i++) {
-            ingredientsList.put(ingredients[i], Integer.valueOf(quantity[i]));
+            Long ingredientId = Long.parseLong(ingredients[i]);
+            Long ingredientQuantity = Long.parseLong(quantity[i]);
+            RecipeIngredientEntity recipeIngredientEntity = new RecipeIngredientEntity();
+            recipeIngredientEntity.setIngredientEntity(ingredientEntityRepository.findIngredientEntityById(ingredientId));
+            recipeIngredientEntity.setRecipeEntity(newRecipe);
+            recipeIngredientEntity.setQuantity(ingredientQuantity);
+            recipeIngredientEntityList.add(recipeIngredientEntity);
         }
-
-        Receipt newReceipt = Receipt.builder()
-                .id(receiptDaoMem.getAllReceipt().size()+1)
-                .ingredients(ingredientsList)
-                .isAvailable(true)
-                .name(name)
-                .price(BigDecimal.valueOf(Long.parseLong(price)))
-                .build();
-        receiptDaoMem.addNewReceipt(newReceipt);
+        recipeIngredientEntityRepository.saveAll(recipeIngredientEntityList);
     }
 
     public Set<Receipt> getAllReceipt() {
