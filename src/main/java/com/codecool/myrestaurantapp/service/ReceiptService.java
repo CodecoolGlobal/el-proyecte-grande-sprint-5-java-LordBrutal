@@ -54,6 +54,12 @@ public class ReceiptService {
     }
 
     public Set<Receipt> getAllReceipt() {
-        return receiptDaoMem.getAllReceipt();
+        List<RecipeEntity> recipeEntities = recipeEntityrepository.findAll();
+        Set<Receipt> recipes = new HashSet<>();
+        for (RecipeEntity recipeEntity : recipeEntities) {
+            Receipt recipe = new Receipt(recipeEntity);
+            recipes.add(recipe);
+        }
+        return recipes;
     }
 }
