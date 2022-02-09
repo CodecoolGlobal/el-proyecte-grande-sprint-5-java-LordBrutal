@@ -1,23 +1,29 @@
 package com.codecool.myrestaurantapp.service;
 
 import com.codecool.myrestaurantapp.model.Receipt;
-import com.codecool.myrestaurantapp.service.dao.ReceiptDaoMem;
+import com.codecool.myrestaurantapp.model.entity.RecipeEntity;
+import com.codecool.myrestaurantapp.model.entity.RecipeIngredientEntity;
+import com.codecool.myrestaurantapp.repository.IngredientEntityRepository;
+import com.codecool.myrestaurantapp.repository.RecipeEntityrepository;
+import com.codecool.myrestaurantapp.repository.RecipeIngredientEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ReceiptService {
 
-    ReceiptDaoMem receiptDaoMem;
+    RecipeEntityrepository recipeEntityrepository;
+    IngredientEntityRepository ingredientEntityRepository;
+    RecipeIngredientEntityRepository recipeIngredientEntityRepository;
 
     @Autowired
-    public ReceiptService(ReceiptDaoMem receiptDaoMem) {
-        this.receiptDaoMem = receiptDaoMem;
+    public ReceiptService(RecipeEntityrepository recipeEntityrepository, IngredientEntityRepository ingredientEntityRepository, RecipeIngredientEntityRepository recipeIngredientEntityRepository) {
+        this.recipeEntityrepository = recipeEntityrepository;
+        this.ingredientEntityRepository = ingredientEntityRepository;
+        this.recipeIngredientEntityRepository = recipeIngredientEntityRepository;
     }
 
     public void addNewReceipt(Map<String, String[]> parameterMap) {
