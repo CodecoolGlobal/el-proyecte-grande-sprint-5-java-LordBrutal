@@ -21,7 +21,7 @@ function SelectIngredient() {
     if (jsn.isLoaded && jsn.error === undefined){
         return (<div><select className="select-dropdown" name="ingredient" id="slects">
             {jsn.data.map((row, index) => (
-                <option className="dropdown-option" key={index} value={row.name}>{row.name}</option>
+                <option className="dropdown-option" key={index} value={row.id}>{row.name}</option>
             ))}
         </select>
             <label><input className="piece-input" type="number" name="quantity" required/></label></div>)

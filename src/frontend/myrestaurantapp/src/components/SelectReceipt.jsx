@@ -21,7 +21,7 @@ function SelectReceipt() {
         if (receipt.isLoaded && receipt.error === undefined){
             return (<div><select className="select-dropdown" name="food" id="selects">
                 {receipt.data.map((row, index) => (
-                    <option key={index} value={row.name}>{row.name} {row.price}</option>
+                    <option key={index} value={row.name}>{row.name} {row.price}HUF</option>
                 ))}
             </select></div>)
         }

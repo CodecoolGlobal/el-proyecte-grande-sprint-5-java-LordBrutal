@@ -20,8 +20,6 @@ public class IngredientEntity {
     private String name;
     private BigDecimal price;
     private UnitOfMeasureType unitType;
-    @ManyToMany(mappedBy = "ingredients")
-    private List<RecipeEntity> recipes;
 
     public IngredientEntity(String name, BigDecimal price, UnitOfMeasureType unitType) {
         this.name = name;
