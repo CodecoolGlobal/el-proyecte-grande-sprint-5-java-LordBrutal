@@ -5,16 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @Builder
 public class Receipt {
 
-    private int id;
+    private Long id;
     private String name;
-    private HashMap<String, Integer> ingredients;
+    private List<RecipeIngredient> ingredientList;
     private BigDecimal price;
     private boolean isAvailable;
 }
