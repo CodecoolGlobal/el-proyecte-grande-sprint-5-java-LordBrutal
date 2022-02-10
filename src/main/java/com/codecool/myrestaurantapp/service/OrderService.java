@@ -49,8 +49,11 @@ public class OrderService {
         CustomerEntity customer = customerEntityRepository.findCustomerEntityById(Long.parseLong(customerId));
         OrderEntity orderEntity = new OrderEntity(orderElements, customer, LocalDateTime.now(), OrderStatus.IN_PROGRESS);
         orderEntity.countTotalPrice();
-        orderEntityrepository.save(orderEntity);
-        modifyOrderRelatedIngredients(orderElements);
+        HttpStatus status = modifyOrderRelatedIngredients(orderElements);
+        if (status.equals(HttpStatus.OK)) {
+            orderEntityrepository.save(orderEntity);
+        }
+        return status;
     }
 
     private List<RecipeEntity> getReceipts(String[] foods) {
