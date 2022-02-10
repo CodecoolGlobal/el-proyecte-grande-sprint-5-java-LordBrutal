@@ -100,7 +100,7 @@ public class OrderService {
         orderEntityrepository.save(orderToUpdate);
     }
 
-    public Set<Order> changeOrderStatus(Long orderId) {
+    public List<Order> changeOrderStatus(Long orderId) {
         OrderEntity orderToChangeStatus = orderEntityrepository.findOrderEntityById(orderId);
         orderToChangeStatus.setOrderStatus(OrderStatus.COMPLETED);
         orderEntityrepository.save(orderToChangeStatus);
