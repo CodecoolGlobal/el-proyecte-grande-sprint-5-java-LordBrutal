@@ -41,7 +41,7 @@ public class StorageService {
     public void decreaseIngredientQuantity(List<RecipeIngredientEntity> ingredientList) {
         for (RecipeIngredientEntity recipeIngredientEntity : ingredientList) {
             Long ingredientId = recipeIngredientEntity.getIngredientEntity().getId();
-            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityById(ingredientId);
+            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityByIngredientId(ingredientId);
             storageEntity.setQuantity(storageEntity.getQuantity() - recipeIngredientEntity.getQuantity());
             storageEntityRepositpry.save(storageEntity);
         }
