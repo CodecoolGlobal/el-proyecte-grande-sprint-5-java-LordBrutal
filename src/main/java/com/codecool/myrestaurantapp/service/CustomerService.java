@@ -6,7 +6,6 @@ import com.codecool.myrestaurantapp.model.entity.AddressEntity;
 import com.codecool.myrestaurantapp.model.entity.CustomerEntity;
 import com.codecool.myrestaurantapp.repository.AddressEntityRepository;
 import com.codecool.myrestaurantapp.repository.CustomerEntityRepository;
-import com.codecool.myrestaurantapp.service.dao.CustomerDaoMem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
