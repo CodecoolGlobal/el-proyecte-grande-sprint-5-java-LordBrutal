@@ -6,6 +6,7 @@ import com.codecool.myrestaurantapp.repository.CustomerEntityRepository;
 import com.codecool.myrestaurantapp.repository.OrderEntityRepository;
 import com.codecool.myrestaurantapp.repository.RecipeEntityrepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -41,7 +42,7 @@ public class OrderService {
         return orderEntities.stream().map(Order::new).collect(Collectors.toSet());
     }
 
-    public void addNewOrder(Map<String, String[]> parameterMap) {
+    public HttpStatus addNewOrder(Map<String, String[]> parameterMap) {
         String[] foods = parameterMap.get("food");
         String customerId = parameterMap.get("customer")[0];
         List<RecipeEntity> orderElements = getReceipts(foods);
