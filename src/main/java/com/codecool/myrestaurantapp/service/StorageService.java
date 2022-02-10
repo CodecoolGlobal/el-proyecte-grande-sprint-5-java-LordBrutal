@@ -37,6 +37,19 @@ public class StorageService {
         }
 
     }
+
+    public int checkStorageItemQuantity(List<RecipeIngredientEntity> items) {
+        int badRequest = 0;
+        for (RecipeIngredientEntity recipeIngredientEntity : items) {
+            Long ingredientId = recipeIngredientEntity.getIngredientEntity().getId();
+            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityByIngredientId(ingredientId);
+            if (storageEntity.getQuantity() < recipeIngredientEntity.getQuantity()) {
+                badRequest += 1;
+            }
+        }
+        return badRequest;
+    }
+
     public void decreaseIngredientQuantity(List<RecipeIngredientEntity> ingredientList) {
         for (RecipeIngredientEntity recipeIngredientEntity : ingredientList) {
             Long ingredientId = recipeIngredientEntity.getIngredientEntity().getId();
