@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface OrderEntityRepository extends JpaRepository<OrderEntity, Long> {
 
-    List<OrderEntity> findAllByOrderStatusIs(OrderStatus orderStatus);
+    List<OrderEntity> findAllByOrderStatusIsOrderByOrderTime(OrderStatus orderStatus);
     OrderEntity findOrderEntityById(Long id);
 }

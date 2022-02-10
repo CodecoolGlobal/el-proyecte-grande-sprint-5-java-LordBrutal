@@ -6,11 +6,13 @@ import com.codecool.myrestaurantapp.model.Order;
 import com.codecool.myrestaurantapp.model.Receipt;
 import com.codecool.myrestaurantapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 @CrossOrigin
@@ -82,12 +84,14 @@ public class ApiController {
 
     @PostMapping(value = "/api/add-order")
     public void addOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        orderService.addNewOrder(request.getParameterMap());
-        response.sendRedirect("http://localhost:3000/list-active-orders");
+        HttpStatus status = orderService.addNewOrder(request.getParameterMap());
+        if (status.equals(HttpStatus.OK)) {
+            response.sendRedirect("http://localhost:3000/list-active-orders");
+        } else response.sendRedirect("http://localhost:3000/create-order");
     }
 
     @GetMapping(value = "/api/get-orders")
-    public Set<Order> getActiveOrders(){
+    public List<Order> getActiveOrders(){
         return orderService.getActiveOrders();
     }
 
@@ -104,8 +108,9 @@ public class ApiController {
     }
 
     @PostMapping(value = "/api/add-to-storage")
-    public void addToStorage(HttpServletRequest request){
+    public void addToStorage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         storageService.addIngredient(request.getParameterMap());
+        response.sendRedirect("http://localhost:3000/");
     }
 
 

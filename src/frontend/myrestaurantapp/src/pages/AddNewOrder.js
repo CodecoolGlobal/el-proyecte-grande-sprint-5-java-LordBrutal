@@ -12,7 +12,7 @@ function AddNewOrder() {
         editFoodList(prevArray => [...prevArray, <SelectReceipt/>])
     }
     return (
-        <div className={"add-ingredient-container"}>
+        <div className={"form-container"}>
             <h1 className={"page-title"}>Add new order</h1>
             <div className={"add-ingredient-baackround"}>
                 <form action="http://localhost:8080/api/add-order" method="POST">

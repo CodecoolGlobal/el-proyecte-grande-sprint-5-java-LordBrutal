@@ -23,25 +23,37 @@ public class StorageService {
         this.ingredientEntityRepository = ingredientEntityRepository;
     }
 
-    public void addIngredient(Map<String, String[]> parameters){
-        String[] ingredientName = parameters.get("id");
+    public void addIngredient(Map<String, String[]> parameters) {
+        String[] ingredientId = parameters.get("ingredient");
         String[] quantity = parameters.get("quantity");
-        if(storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientName[0])).isPresent()){
-            System.out.println("van benne");
-            StorageEntity storageEntity = storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientName[0])).get();
+        if (storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientId[0])).isPresent()) {
+            StorageEntity storageEntity = storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientId[0])).get();
             storageEntity.addQuantity(Long.parseLong(quantity[0]));
             storageEntityRepositpry.save(storageEntity);
-        }else {
-            IngredientEntity ingredientEntity = ingredientEntityRepository.findIngredientEntityById(Long.parseLong(ingredientName[0]));
-            StorageEntity storageEntity = new StorageEntity(ingredientEntity,Long.parseLong(quantity[0]));
+        } else {
+            IngredientEntity ingredientEntity = ingredientEntityRepository.findIngredientEntityById(Long.parseLong(ingredientId[0]));
+            StorageEntity storageEntity = new StorageEntity(ingredientEntity, Long.parseLong(quantity[0]));
             storageEntityRepositpry.save(storageEntity);
         }
 
     }
+
+    public int checkStorageItemQuantity(List<RecipeIngredientEntity> items) {
+        int badRequest = 0;
+        for (RecipeIngredientEntity recipeIngredientEntity : items) {
+            Long ingredientId = recipeIngredientEntity.getIngredientEntity().getId();
+            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityByIngredientId(ingredientId);
+            if (storageEntity.getQuantity() < recipeIngredientEntity.getQuantity()) {
+                badRequest += 1;
+            }
+        }
+        return badRequest;
+    }
+
     public void decreaseIngredientQuantity(List<RecipeIngredientEntity> ingredientList) {
         for (RecipeIngredientEntity recipeIngredientEntity : ingredientList) {
             Long ingredientId = recipeIngredientEntity.getIngredientEntity().getId();
-            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityById(ingredientId);
+            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityByIngredientId(ingredientId);
             storageEntity.setQuantity(storageEntity.getQuantity() - recipeIngredientEntity.getQuantity());
             storageEntityRepositpry.save(storageEntity);
         }
