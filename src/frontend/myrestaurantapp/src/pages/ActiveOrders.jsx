@@ -33,7 +33,7 @@ function ActiveOrders(props) {
                                     <table>
                                         <tr>
                                             <td>Order Number</td>
-                                            <td>{order.id + 1}</td>
+                                            <td>{order.id}</td>
                                         </tr>
                                         <tr>
                                             <td>Order time</td>
