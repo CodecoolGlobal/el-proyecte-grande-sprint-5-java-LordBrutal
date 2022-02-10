@@ -6,6 +6,7 @@ import com.codecool.myrestaurantapp.model.Order;
 import com.codecool.myrestaurantapp.model.Receipt;
 import com.codecool.myrestaurantapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,8 +84,10 @@ public class ApiController {
 
     @PostMapping(value = "/api/add-order")
     public void addOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        orderService.addNewOrder(request.getParameterMap());
-        response.sendRedirect("http://localhost:3000/list-active-orders");
+        HttpStatus status = orderService.addNewOrder(request.getParameterMap());
+        if (status.equals(HttpStatus.OK)) {
+            response.sendRedirect("http://localhost:3000/list-active-orders");
+        } else response.sendRedirect("http://localhost:3000/create-order");
     }
 
     @GetMapping(value = "/api/get-orders")
