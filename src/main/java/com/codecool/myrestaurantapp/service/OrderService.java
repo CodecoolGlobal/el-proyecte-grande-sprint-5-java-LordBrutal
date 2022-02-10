@@ -31,9 +31,9 @@ public class OrderService {
         this.service = service;
     }
 
-    public Set<Order> getActiveOrders() {
-         List<OrderEntity> orderEntities= orderEntityrepository.findAllByOrderStatusIs(OrderStatus.IN_PROGRESS);
-        return orderEntities.stream().map(Order::new).collect(Collectors.toSet());
+    public List<Order> getActiveOrders() {
+         List<OrderEntity> orderEntities= orderEntityrepository.findAllByOrderStatusIsOrderByOrderTime(OrderStatus.IN_PROGRESS);
+        return orderEntities.stream().map(Order::new).collect(Collectors.toList());
     }
 
     public Set<Order> getFulfilledOrders() {
