@@ -1,11 +1,13 @@
 package com.codecool.myrestaurantapp.service;
 
 import com.codecool.myrestaurantapp.model.entity.IngredientEntity;
+import com.codecool.myrestaurantapp.model.entity.RecipeIngredientEntity;
 import com.codecool.myrestaurantapp.model.entity.StorageEntity;
 import com.codecool.myrestaurantapp.repository.IngredientEntityRepository;
 import com.codecool.myrestaurantapp.repository.StorageEntityRepositpry;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,5 +37,13 @@ public class StorageService {
             storageEntityRepositpry.save(storageEntity);
         }
 
+    }
+    public void decreaseIngredientQuantity(List<RecipeIngredientEntity> ingredientList) {
+        for (RecipeIngredientEntity recipeIngredientEntity : ingredientList) {
+            Long ingredientId = recipeIngredientEntity.getIngredientEntity().getId();
+            StorageEntity storageEntity = storageEntityRepositpry.findStorageEntityById(ingredientId);
+            storageEntity.setQuantity(storageEntity.getQuantity() - recipeIngredientEntity.getQuantity());
+            storageEntityRepositpry.save(storageEntity);
+        }
     }
 }
