@@ -68,10 +68,23 @@ public class OrderService {
         return orderElements;
     }
 
-    private void modifyOrderRelatedIngredients(List<RecipeEntity> recipeEntityList) {
+    private HttpStatus modifyOrderRelatedIngredients(List<RecipeEntity> recipeEntityList) {
+        int counter = 0;
         for (RecipeEntity recipeEntity : recipeEntityList) {
-            service.decreaseIngredientQuantity(recipeEntity.getIngredientEntityList());
+            List<RecipeIngredientEntity> recipeIngredientEntityList = recipeEntity.getIngredientEntityList();
+            int badRequest = service.checkStorageItemQuantity(recipeIngredientEntityList);
+            if (badRequest!=0) {
+                counter += 1;
+            }
         }
+        if (counter==0) {
+            for (RecipeEntity recipeEntity : recipeEntityList) {
+                List<RecipeIngredientEntity> recipeIngredientEntityList = recipeEntity.getIngredientEntityList();
+                service.decreaseIngredientQuantity(recipeIngredientEntityList);
+            }
+            return HttpStatus.OK;
+        }
+        return HttpStatus.BAD_REQUEST;
     }
 
     public void deleteOrder(Long orderId) {
