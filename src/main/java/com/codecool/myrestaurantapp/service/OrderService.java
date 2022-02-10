@@ -28,6 +28,7 @@ public class OrderService {
         this.orderEntityrepository = orderEntityrepository;
         this.recipeEntityrepository = recipeEntityrepository;
         this.customerEntityRepository = customerEntityRepository;
+        this.service = service;
     }
 
     public Set<Order> getActiveOrders() {
