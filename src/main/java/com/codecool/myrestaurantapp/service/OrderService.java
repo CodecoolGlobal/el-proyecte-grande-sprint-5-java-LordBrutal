@@ -37,7 +37,7 @@ public class OrderService {
     }
 
     public Set<Order> getFulfilledOrders() {
-        List<OrderEntity> orderEntities = orderEntityrepository.findAllByOrderStatusIs(OrderStatus.COMPLETED);
+        List<OrderEntity> orderEntities = orderEntityrepository.findAllByOrderStatusIsOrderByOrderTime(OrderStatus.COMPLETED);
         return orderEntities.stream().map(Order::new).collect(Collectors.toSet());
     }
 
