@@ -236,3 +236,7 @@ button a, a:hover, a:focus, a:active {
     /* This section calls the slideInFromLeft animation we defined above */
     animation: 1s ease-out 0s 1 slideInFromLeft;
 }
+
+option {
+    background-color: darkslategray;
+}
