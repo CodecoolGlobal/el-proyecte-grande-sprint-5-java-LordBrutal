@@ -27,4 +27,9 @@ public class StorageEntity {
 
     public StorageEntity() {
     }
+
+    public void addQuantity(Long quantity){
+        this.quantity += quantity;
+    }
+
 }

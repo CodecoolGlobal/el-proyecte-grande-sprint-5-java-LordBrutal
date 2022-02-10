@@ -1,62 +1,55 @@
 package com.codecool.myrestaurantapp.service;
 
-import com.codecool.myrestaurantapp.model.Customer;
-import com.codecool.myrestaurantapp.model.Order;
-import com.codecool.myrestaurantapp.model.Receipt;
-import com.codecool.myrestaurantapp.service.dao.CustomerDaoMem;
-import com.codecool.myrestaurantapp.service.dao.OrderDaoMem;
-import com.codecool.myrestaurantapp.service.dao.ReceiptDaoMem;
+import com.codecool.myrestaurantapp.model.*;
+import com.codecool.myrestaurantapp.model.entity.*;
+import com.codecool.myrestaurantapp.repository.CustomerEntityRepository;
+import com.codecool.myrestaurantapp.repository.OrderEntityRepository;
+import com.codecool.myrestaurantapp.repository.RecipeEntityrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
 
-    OrderDaoMem orderDaoMem;
-    ReceiptDaoMem receiptDaoMem;
-    CustomerDaoMem customerDaoMem;
+    OrderEntityRepository orderEntityrepository;
+    RecipeEntityrepository recipeEntityrepository;
+    CustomerEntityRepository customerEntityRepository;
 
     @Autowired
-    public OrderService(OrderDaoMem orderDaoMem, ReceiptDaoMem receiptDaoMem, CustomerDaoMem customerDaoMem) {
-        this.orderDaoMem = orderDaoMem;
-        this.receiptDaoMem = receiptDaoMem;
-        this.customerDaoMem = customerDaoMem;
+    public OrderService(OrderEntityRepository orderEntityrepository, RecipeEntityrepository recipeEntityrepository, CustomerEntityRepository customerEntityRepository) {
+        this.orderEntityrepository = orderEntityrepository;
+        this.recipeEntityrepository = recipeEntityrepository;
+        this.customerEntityRepository = customerEntityRepository;
     }
 
     public Set<Order> getActiveOrders() {
-         return orderDaoMem.getActiveOrders();
+         List<OrderEntity> orderEntities= orderEntityrepository.findAllByOrderStatusIs(OrderStatus.IN_PROGRESS);
+        return orderEntities.stream().map(Order::new).collect(Collectors.toSet());
     }
 
     public Set<Order> getFulfilledOrders() {
-        return orderDaoMem.getFulfilledOrders();
+        List<OrderEntity> orderEntities = orderEntityrepository.findAllByOrderStatusIs(OrderStatus.COMPLETED);
+        return orderEntities.stream().map(Order::new).collect(Collectors.toSet());
     }
 
     public void addNewOrder(Map<String, String[]> parameterMap) {
         String[] foods = parameterMap.get("food");
-        String customerName = parameterMap.get("customer")[0];
-        List<Receipt> orderElements = getReceipts(foods);
-        Customer customer = customerDaoMem.findCustomer(customerName);
-        Order newOrder = Order.builder()
-                .foods(orderElements)
-                .id(orderDaoMem.getStoredOrdersNumber())
-                .orderTime(LocalDateTime.now())
-                .customer(customer)
-                .build();
-        newOrder.countTotalPrice();
-        newOrder.formatDate();
-        orderDaoMem.addOrder(newOrder);
+        String customerId = parameterMap.get("customer")[0];
+        List<RecipeEntity> orderElements = getReceipts(foods);
+        CustomerEntity customer = customerEntityRepository.findCustomerEntityById(Long.parseLong(customerId));
+        OrderEntity orderEntity = new OrderEntity(orderElements, customer, LocalDateTime.now(), OrderStatus.IN_PROGRESS);
+        orderEntity.countTotalPrice();
+        orderEntityrepository.save(orderEntity);
     }
 
-    private List<Receipt> getReceipts(String[] foods) {
-        List<Receipt> orderElements = new ArrayList<>();
+    private List<RecipeEntity> getReceipts(String[] foods) {
+        List<RecipeEntity> orderElements = new ArrayList<>();
         for (String food : foods) {
-            for (Receipt receipt : receiptDaoMem.getAllReceipt()) {
+            for (RecipeEntity receipt : recipeEntityrepository.findAll()) {
                 if (food.equals(receipt.getName())) {
                     orderElements.add(receipt);
                 }
@@ -65,19 +58,23 @@ public class OrderService {
         return orderElements;
     }
 
-    public void deleteOrder(int orderId) {
-        orderDaoMem.deleteOrder(orderId);
+    public void deleteOrder(Long orderId) {
+        OrderEntity orderToDelete = orderEntityrepository.findOrderEntityById(orderId);
+        orderEntityrepository.delete(orderToDelete);
     }
 
     public void updateOrder(String oderId, Map<String, String[]> parameterMap) {
-        Order orderToUpdate = orderDaoMem.getOrderById(Integer.parseInt(oderId));
-        List<Receipt> newFoods = getReceipts(parameterMap.get("food"));
+        OrderEntity orderToUpdate = orderEntityrepository.findOrderEntityById(Long.parseLong(oderId));
+        List<RecipeEntity> newFoods = getReceipts(parameterMap.get("food"));
         orderToUpdate.getFoods().addAll(newFoods);
         orderToUpdate.countTotalPrice();
+        orderEntityrepository.save(orderToUpdate);
     }
 
-    public Set<Order> changeOrderStatus(int orderId) {
-        orderDaoMem.changeOrderStatus(orderId);
-        return orderDaoMem.getActiveOrders();
+    public Set<Order> changeOrderStatus(Long orderId) {
+        OrderEntity orderToChangeStatus = orderEntityrepository.findOrderEntityById(orderId);
+        orderToChangeStatus.setOrderStatus(OrderStatus.COMPLETED);
+        orderEntityrepository.save(orderToChangeStatus);
+        return getActiveOrders();
     }
 }

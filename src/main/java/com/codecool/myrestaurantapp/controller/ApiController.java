@@ -4,10 +4,7 @@ import com.codecool.myrestaurantapp.model.Customer;
 import com.codecool.myrestaurantapp.model.Ingredient;
 import com.codecool.myrestaurantapp.model.Order;
 import com.codecool.myrestaurantapp.model.Receipt;
-import com.codecool.myrestaurantapp.service.CustomerService;
-import com.codecool.myrestaurantapp.service.IngredientsService;
-import com.codecool.myrestaurantapp.service.OrderService;
-import com.codecool.myrestaurantapp.service.ReceiptService;
+import com.codecool.myrestaurantapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +22,15 @@ public class ApiController {
     IngredientsService ingredientsService;
     OrderService orderService;
     ReceiptService receiptService;
+    StorageService storageService;
 
     @Autowired
-    public ApiController(CustomerService customerService, IngredientsService ingredientsService, OrderService orderService, ReceiptService receiptService) {
+    public ApiController(CustomerService customerService, IngredientsService ingredientsService, OrderService orderService, ReceiptService receiptService, StorageService storageService) {
         this.customerService = customerService;
         this.ingredientsService = ingredientsService;
         this.orderService = orderService;
         this.receiptService = receiptService;
+        this.storageService = storageService;
     }
 
     /**Ingredient related endpoints*/
@@ -77,7 +76,7 @@ public class ApiController {
 
     @GetMapping(value = "/api/change-order-status/{orderId}")
     public void changeOrderStatus(@PathVariable String orderId, HttpServletResponse response) throws IOException {
-        orderService.changeOrderStatus(Integer.parseInt(orderId));
+        orderService.changeOrderStatus(Long.parseLong(orderId));
         response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
@@ -94,7 +93,7 @@ public class ApiController {
 
     @GetMapping(value = "/api/delete-order/{orderId}")
     public void deleteOrder(@PathVariable String orderId, HttpServletResponse response) throws IOException {
-        orderService.deleteOrder(Integer.parseInt(orderId));
+        orderService.deleteOrder(Long.parseLong(orderId));
         response.sendRedirect("http://localhost:3000/list-active-orders");
     }
 
@@ -104,6 +103,10 @@ public class ApiController {
         response.sendRedirect("/");
     }
 
+    @PostMapping(value = "/api/add-to-storage")
+    public void addToStorage(HttpServletRequest request){
+        storageService.addIngredient(request.getParameterMap());
+    }
 
 
 }

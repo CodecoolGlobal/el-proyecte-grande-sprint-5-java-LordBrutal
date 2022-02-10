@@ -6,26 +6,20 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @Builder
-public class Receipt {
+public class RecipeOverview {
 
     private Long id;
     private String name;
-    private List<RecipeIngredient> ingredientList;
     private BigDecimal price;
     private boolean isAvailable;
 
-    public Receipt(RecipeEntity recipeEntity) {
+    public RecipeOverview(RecipeEntity recipeEntity) {
         this.id = recipeEntity.getId();
         this.name = recipeEntity.getName();
-        this.ingredientList = recipeEntity.getIngredientEntityList()
-                .stream()
-                .map(RecipeIngredient::new)
-                .toList();
         this.price = recipeEntity.getPrice();
         this.isAvailable = recipeEntity.isAvailable();
     }

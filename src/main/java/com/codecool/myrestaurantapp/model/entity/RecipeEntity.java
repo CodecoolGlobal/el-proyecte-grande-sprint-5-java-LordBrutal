@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,16 +23,21 @@ public class RecipeEntity {
     private List<OrderEntity> orders;
 
     private String name;
-
-    @ManyToMany
-    private List<IngredientEntity> ingredients;
+    @OneToMany(mappedBy = "recipeEntity")
+    private List<RecipeIngredientEntity> ingredientEntityList;
     private BigDecimal price;
     private boolean isAvailable;
 
-    public RecipeEntity(List<OrderEntity> orders, String name, List<IngredientEntity> ingredients, BigDecimal price, boolean isAvailable) {
+    public RecipeEntity(List<OrderEntity> orders, String name,  BigDecimal price, boolean isAvailable) {
         this.orders = orders;
         this.name = name;
-        this.ingredients = ingredients;
+        this.price = price;
+        this.isAvailable = isAvailable;
+    }
+
+    public RecipeEntity(String name, List<RecipeIngredientEntity> ingredientEntityList, BigDecimal price, boolean isAvailable) {
+        this.name = name;
+        this.ingredientEntityList = ingredientEntityList;
         this.price = price;
         this.isAvailable = isAvailable;
     }
