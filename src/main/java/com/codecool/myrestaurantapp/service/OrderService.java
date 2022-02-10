@@ -18,12 +18,17 @@ public class OrderService {
     OrderEntityRepository orderEntityrepository;
     RecipeEntityrepository recipeEntityrepository;
     CustomerEntityRepository customerEntityRepository;
+    StorageService service;
 
     @Autowired
-    public OrderService(OrderEntityRepository orderEntityrepository, RecipeEntityrepository recipeEntityrepository, CustomerEntityRepository customerEntityRepository) {
+    public OrderService(OrderEntityRepository orderEntityrepository,
+                        RecipeEntityrepository recipeEntityrepository,
+                        CustomerEntityRepository customerEntityRepository,
+                        StorageService service) {
         this.orderEntityrepository = orderEntityrepository;
         this.recipeEntityrepository = recipeEntityrepository;
         this.customerEntityRepository = customerEntityRepository;
+        this.service = service;
     }
 
     public Set<Order> getActiveOrders() {
@@ -44,6 +49,7 @@ public class OrderService {
         OrderEntity orderEntity = new OrderEntity(orderElements, customer, LocalDateTime.now(), OrderStatus.IN_PROGRESS);
         orderEntity.countTotalPrice();
         orderEntityrepository.save(orderEntity);
+        modifyOrderRelatedIngredients(orderElements);
     }
 
     private List<RecipeEntity> getReceipts(String[] foods) {
@@ -56,6 +62,12 @@ public class OrderService {
             }
         }
         return orderElements;
+    }
+
+    private void modifyOrderRelatedIngredients(List<RecipeEntity> recipeEntityList) {
+        for (RecipeEntity recipeEntity : recipeEntityList) {
+            service.decreaseIngredientQuantity(recipeEntity.getIngredientEntityList());
+        }
     }
 
     public void deleteOrder(Long orderId) {
