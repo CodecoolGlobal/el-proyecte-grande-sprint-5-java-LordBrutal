@@ -14,4 +14,6 @@ public interface StorageEntityRepositpry extends JpaRepository<StorageEntity, Lo
     @Query("SELECT s FROM StorageEntity s where s.ingredient.id = ?1")
     Optional<StorageEntity> findByIngredientId(Long id);
 
+    StorageEntity findStorageEntityByIngredientId(Long ingredientId);
+
 }
