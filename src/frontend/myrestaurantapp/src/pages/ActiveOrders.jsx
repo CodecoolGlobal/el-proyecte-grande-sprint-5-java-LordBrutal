@@ -45,7 +45,7 @@ function ActiveOrders(props) {
                                         </tr>
                                         <tr>
                                             <td>Customer Adress</td>
-                                            <td>{order.customer.address.cityName} {order.customer.address.houseNumber}</td>
+                                            <td>{order.customer.address.cityName}, {order.customer.address.streetName} {order.customer.address.houseNumber}</td>
                                         </tr>
                                         <tr>
                                             <td>Phone Number</td>
