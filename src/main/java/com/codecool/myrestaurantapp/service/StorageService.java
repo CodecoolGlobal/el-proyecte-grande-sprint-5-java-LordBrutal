@@ -22,15 +22,15 @@ public class StorageService {
     }
 
     public void addIngredient(Map<String, String[]> parameters){
-        String[] ingredientName = parameters.get("id");
+        String[] ingredientId = parameters.get("ingredient");
         String[] quantity = parameters.get("quantity");
-        if(storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientName[0])).isPresent()){
+        if(storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientId[0])).isPresent()){
             System.out.println("van benne");
-            StorageEntity storageEntity = storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientName[0])).get();
+            StorageEntity storageEntity = storageEntityRepositpry.findByIngredientId(Long.parseLong(ingredientId[0])).get();
             storageEntity.addQuantity(Long.parseLong(quantity[0]));
             storageEntityRepositpry.save(storageEntity);
         }else {
-            IngredientEntity ingredientEntity = ingredientEntityRepository.findIngredientEntityById(Long.parseLong(ingredientName[0]));
+            IngredientEntity ingredientEntity = ingredientEntityRepository.findIngredientEntityById(Long.parseLong(ingredientId[0]));
             StorageEntity storageEntity = new StorageEntity(ingredientEntity,Long.parseLong(quantity[0]));
             storageEntityRepositpry.save(storageEntity);
         }
