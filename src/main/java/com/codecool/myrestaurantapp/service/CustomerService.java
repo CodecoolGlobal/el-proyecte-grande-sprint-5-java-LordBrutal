@@ -1,6 +1,5 @@
 package com.codecool.myrestaurantapp.service;
 
-import com.codecool.myrestaurantapp.model.Address;
 import com.codecool.myrestaurantapp.model.Customer;
 import com.codecool.myrestaurantapp.model.entity.AddressEntity;
 import com.codecool.myrestaurantapp.model.entity.CustomerEntity;
