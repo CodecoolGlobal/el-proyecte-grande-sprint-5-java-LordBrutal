@@ -23,3 +23,10 @@ const login = async(username, password) => {
 const logout = () => {
     localStorage.removeItem("access_token");
 }
+
+const getUserToken = () => {
+    if (localStorage.getItem('access_token') != null){
+        return JSON.parse(localStorage.getItem('access_token'))
+    }
+    return "";
+}
