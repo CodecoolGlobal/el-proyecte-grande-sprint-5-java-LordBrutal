@@ -24,7 +24,7 @@ function App() {
                     {validateRoleUser() && <Route path="/create-customer" element={<AddCustomer/>}/>}
                     {validateRoleUser() && <Route path={"/create-order"} element={<AddNewOrder/>}/>}
                     {validateRoleUser() && <Route path="/list-active-orders" element={<ActiveOrders/>}/>}
-                    {validateRoleUser() && <Route path="/logout" element={<Login/>}/>}
+                    <Route path="/login" element={<Login/>}/>
                     <Route path="*" element={<PageNotFound/>}/>
                 </Routes>
             </div>
