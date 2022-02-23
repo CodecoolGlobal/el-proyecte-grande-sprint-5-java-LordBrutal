@@ -1,7 +1,7 @@
 import NavbarListItem from "./components/NavbarListItem";
 import logo from "./images/logomain.svg"
-import {getUserToken} from "./services/AuthService";
 import {useLocation} from "react-router-dom";
+import {validateRoleUser} from "./services/UserRolesValidation";
 
 function Navbar() {
 
@@ -12,14 +12,12 @@ function Navbar() {
         errorPage = true;
     }
 
-
-
-    if (!errorPage){
+    if (!errorPage && validateRoleUser()){
         return (
             <div>
                 <div className="header-navbar">
                     <ul>
-                        { getUserToken() ? (<div><li><a href="/logout">Logout</a></li>
+                        {validateRoleUser() ? (<div><li><a href="#">Logout</a></li>
                             <li><a href="/ingredient">Add ingredient</a></li>
                             <li><a href="/create-recipe">Create recipe</a></li>
                             <li><a href="/create-customer">Add Customer</a></li>
