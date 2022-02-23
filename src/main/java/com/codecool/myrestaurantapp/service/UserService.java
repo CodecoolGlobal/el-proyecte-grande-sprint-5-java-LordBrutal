@@ -28,9 +28,14 @@ public class UserService implements UserDetailsService {
     private final RoleEntityRepository roleEntityRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserEntity saveUser(UserEntity userEntity) {
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        return userEntityRepository.save(userEntity);
+    public boolean saveUser(UserEntity userEntity) {
+        if(getUser(userEntity.getName())==null) {
+            userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+            userEntity.getRoleEntities().add(roleEntityRepository.findRoleByName("ROLE_USER"));
+            userEntityRepository.save(userEntity);
+            return true;
+        }
+        return false;
     }
 
     public RoleEntity saveRole(RoleEntity role) {
