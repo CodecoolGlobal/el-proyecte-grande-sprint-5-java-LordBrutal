@@ -8,7 +8,7 @@ const validateRoleUser = () =>{
     const jwt = getUserToken()
     if (jwt !== ""){
         const decoded = jwt_decode(jwt);
-        return decoded.role.includes("ROLE_USER")
+        return decoded.roles.includes("ROLE_USER")
     }
     return false
 }
