@@ -97,7 +97,7 @@ body {
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-top: 5px;
+    margin-top: 10px;
     height: 30px;
     margin-bottom: 10px;
     background-color: transparent;
@@ -151,7 +151,7 @@ body {
 
 }
 
-.add-user-baackround input {
+.add-user-baackround input{
     width: 100%;
 }
 
@@ -239,4 +239,19 @@ button a, a:hover, a:focus, a:active {
 
 option {
     background-color: darkslategray;
+}
+
+.user-login{
+    padding: 50px;
+    width: 450px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.14);
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+}
+.user-login input{
+    font-size: 17px;
+    color: white;
+    width: 80%;
+    text-align: center;
 }
