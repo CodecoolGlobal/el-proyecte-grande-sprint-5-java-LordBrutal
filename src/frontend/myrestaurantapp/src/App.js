@@ -9,8 +9,8 @@ import AddCustomer from "./pages/AddCustomer";
 import AddNewOrder from "./pages/AddNewOrder";
 import ActiveOrders from "./pages/ActiveOrders";
 import Login from "./pages/Login";
-import {getUserToken} from "./services/AuthService";
 import PageNotFound from "./pages/PageNotFound";
+import {validateRoleUser} from "./services/UserRolesValidation";
 
 function App() {
     return (
@@ -19,12 +19,12 @@ function App() {
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Main/>} exact/>
-                    {getUserToken() && <Route path="/ingredient" element={<Ingredients/>}/> &&
-                    <Route path="/create-recipe" element={<CreateRecipe/>}/> &&
-                    <Route path="/create-customer" element={<AddCustomer/>}/> &&
-                    <Route path={"/create-order"} element={<AddNewOrder/>}/> &&
-                    <Route path="/list-active-orders" element={<ActiveOrders/>}/>}
-                    <Route path="/login" element={<Login/>}/>
+                    {validateRoleUser() && <Route path="/ingredient" element={<Ingredients/>}/>}
+                    {validateRoleUser() && <Route path="/create-recipe" element={<CreateRecipe/>}/>}
+                    {validateRoleUser() && <Route path="/create-customer" element={<AddCustomer/>}/>}
+                    {validateRoleUser() && <Route path={"/create-order"} element={<AddNewOrder/>}/>}
+                    {validateRoleUser() && <Route path="/list-active-orders" element={<ActiveOrders/>}/>}
+                    {validateRoleUser() && <Route path="/logout" element={<Login/>}/>}
                     <Route path="*" element={<PageNotFound/>}/>
                 </Routes>
             </div>
