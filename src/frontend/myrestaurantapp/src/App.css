@@ -62,7 +62,15 @@ body {
     margin: 0 auto;
     width: 50%;
 }
-
+.error-logo{
+    margin: 130px auto 0 auto;
+    width: 45%;
+}
+.error-text{
+    margin-top: 50px;
+    font-weight: bold;
+    color: white;
+}
 .form-container {
     margin-top: 120px;
 }
