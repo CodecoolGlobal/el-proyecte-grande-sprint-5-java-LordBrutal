@@ -131,5 +131,12 @@ public class ApiController {
         return ResponseEntity.badRequest().body("This username already exists");
     }
 
+    /**Storage related endpoints*/
+
+    @GetMapping (value = "api/storage/items")
+    public ResponseEntity<?> listItemInStorage() {
+        return ResponseEntity.ok().body(storageService.getAllStorageItem());
+    }
+
 
 }
