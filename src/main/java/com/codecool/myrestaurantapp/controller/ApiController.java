@@ -116,5 +116,17 @@ public class ApiController {
         response.sendRedirect("http://localhost:3000/");
     }
 
+    /**User related endpoints*/
+
+    @PostMapping(value = "api/user/register")
+    public ResponseEntity<?> registerUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        UserEntity user = UserEntity.builder().name(request.getParameter("username")).password(request.getParameter("password"))
+                .roleEntities(new ArrayList<>()).build();
+        if(userService.saveUser(user)) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().body("This username already exists");
+    }
+
 
 }
