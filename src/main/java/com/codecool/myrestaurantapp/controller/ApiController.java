@@ -25,14 +25,17 @@ public class ApiController {
     OrderService orderService;
     ReceiptService receiptService;
     StorageService storageService;
+    UserService userService;
 
     @Autowired
-    public ApiController(CustomerService customerService, IngredientsService ingredientsService, OrderService orderService, ReceiptService receiptService, StorageService storageService) {
+    public ApiController(CustomerService customerService, IngredientsService ingredientsService, OrderService orderService,
+                         ReceiptService receiptService, StorageService storageService, UserService userService) {
         this.customerService = customerService;
         this.ingredientsService = ingredientsService;
         this.orderService = orderService;
         this.receiptService = receiptService;
         this.storageService = storageService;
+        this.userService = userService;
     }
 
     /**Ingredient related endpoints*/
