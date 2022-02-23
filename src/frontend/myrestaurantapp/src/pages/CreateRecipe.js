@@ -13,7 +13,7 @@ function CreateRecipe() {
     }
 
     return (<div className="form-container">
-        <div className="add-ingredient-baackround">
+        <div className="add-ingredient-backround">
             <form action="http://localhost:8080/api/add-receipt" method="POST">
                 <label className="label-text">
                     Reciept Name
