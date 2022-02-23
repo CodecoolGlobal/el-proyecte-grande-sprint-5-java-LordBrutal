@@ -4,14 +4,17 @@ import com.codecool.myrestaurantapp.model.Customer;
 import com.codecool.myrestaurantapp.model.Ingredient;
 import com.codecool.myrestaurantapp.model.Order;
 import com.codecool.myrestaurantapp.model.Receipt;
+import com.codecool.myrestaurantapp.model.entity.UserEntity;
 import com.codecool.myrestaurantapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
