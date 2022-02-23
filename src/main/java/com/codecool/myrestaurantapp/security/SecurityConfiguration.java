@@ -38,14 +38,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         CustomAuthenticationFilter authenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         authenticationFilter.setFilterProcessesUrl("/api/login");
-        http.cors().and()
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("api/login").permitAll()
-                .and()
-                .authorizeRequests().anyRequest().authenticated().and()
-                .addFilter(authenticationFilter)
-                .addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.cors();
+        http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().antMatchers("api/user/register/**").permitAll();
+        http.authorizeRequests().antMatchers("api/login").permitAll();
+/*        http.authorizeRequests().anyRequest().authenticated();*/
+        http.addFilter(authenticationFilter);
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
     @Bean
