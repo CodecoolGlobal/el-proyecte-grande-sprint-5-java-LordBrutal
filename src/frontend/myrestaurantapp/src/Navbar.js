@@ -8,7 +8,7 @@ function Navbar() {
 
     const location = useLocation();
     let errorPage = false;
-    const routes = ["/logout","/ingredient", "/create-recipe", "/create-customer", "/create-order", "/list-active-orders", "/login", "/"]
+    const routes = ["/logout","/ingredient", "/create-recipe", "/create-customer", "/create-order", "/list-active-orders", "/login", "/", "/storage"]
     const defaultRutes = ["/login", "/"]
     if (routes.indexOf(useLocation().pathname) === -1){
         errorPage = true;
@@ -28,7 +28,7 @@ function Navbar() {
                                 <li><a href="/create-customer">Add Customer</a></li>
                                 <NavbarListItem url={"/create-order"} text={"Add new order"}/>
                                 <NavbarListItem url={"/list-active-orders"} text={"Active orders"}/>
-                                <li><a href="#">About</a></li></div>) : location.pathname === "/login" ? null :(<li><a href="/login">Login</a></li> )}
+                                <li><a href="/storage">Storage</a></li></div>) : location.pathname === "/login" ? null :(<li><a href="/login">Login</a></li> )}
                             <li id="logo-left" className="animation-top"><img className="main-logo" src={logo} alt="logo"/></li>
                             <li id="left-logo-text"  className="animation-top"><a href="/">My Restaurant</a></li>
                         </ul>
