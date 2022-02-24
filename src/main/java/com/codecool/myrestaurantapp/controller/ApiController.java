@@ -130,6 +130,11 @@ public class ApiController {
         return ResponseEntity.badRequest().body("This username already exists");
     }
 
+    @PutMapping(value = "api/user/add-role")
+    public void addRoleToUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        userService.addRoleToUser(request.getParameter("username"), request.getParameter("role"));
+    }
+
     /**Storage related endpoints*/
 
     @GetMapping (value = "api/storage/items")
