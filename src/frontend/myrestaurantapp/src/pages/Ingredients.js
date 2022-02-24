@@ -3,7 +3,7 @@ import SelectIngredient from "../SelectIngredient";
 function Ingredients() {
     return (
         <div>
-            <div className={"ingredients-container"}>
+            <div className={"ingredients-container animation-show"}>
                 <div className="form-container">
                     <div className="add-ingredient-backround">
                         <form action="http://localhost:8080/api/add-ingredient" method="POST">

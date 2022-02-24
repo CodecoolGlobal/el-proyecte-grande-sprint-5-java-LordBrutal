@@ -12,7 +12,7 @@ function CreateRecipe() {
         editList(prevArray => [...prevArray, <SelectIngredient/>])
     }
 
-    return (<div className="form-container">
+    return (<div className="form-container animation-show">
         <div className="add-ingredient-backround">
             <form action="http://localhost:8080/api/add-receipt" method="POST">
                 <label className="label-text">

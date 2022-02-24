@@ -1,5 +1,5 @@
 function AddCustomer() {
-    return (<div className="form-container">
+    return (<div className="form-container animation-show">
         <div className="add-user-backround">
             <form action="http://localhost:8080/api/add-customer" method="POST">
                 <label className="label-text">Name<br/>

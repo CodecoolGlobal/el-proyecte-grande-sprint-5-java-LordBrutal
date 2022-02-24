@@ -27,7 +27,7 @@ function Login() {
 
     return (
         <div>
-            <div className="form-container">
+            <div className="form-container animation-show">
                 <div className="user-login">
                     <label className="label-text">
                         Username
