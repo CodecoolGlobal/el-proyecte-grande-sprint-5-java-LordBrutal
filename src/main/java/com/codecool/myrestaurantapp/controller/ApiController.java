@@ -115,7 +115,7 @@ public class ApiController {
     @PostMapping(value = "/api/add-to-storage")
     public void addToStorage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         storageService.addIngredient(request.getParameterMap());
-        response.sendRedirect("http://localhost:3000/");
+        response.sendRedirect("http://localhost:3000/storage");
     }
 
     /**User related endpoints*/
@@ -128,6 +128,11 @@ public class ApiController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().body("This username already exists");
+    }
+
+    @PutMapping(value = "api/user/add-role")
+    public void addRoleToUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        userService.addRoleToUser(request.getParameter("username"), request.getParameter("role"));
     }
 
     /**Storage related endpoints*/

@@ -60,6 +60,6 @@ public class StorageService {
     }
 
     public List<StorageEntity> getAllStorageItem() {
-        return storageEntityRepositpry.findAll();
+        return storageEntityRepositpry.findAllStorageEntity();
     }
 }

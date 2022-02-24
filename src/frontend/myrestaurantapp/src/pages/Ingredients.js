@@ -24,15 +24,6 @@ function Ingredients() {
                         </form>
                     </div>
                 </div>
-                <div className="form-container">
-                    <div className="add-ingredient-backround">
-                        <form action="http://localhost:8080/api/add-to-storage" method="POST">
-                            <h1>Add ingredient to storage</h1>
-                            <SelectIngredient/>
-                            <button className="submit-button" type="submit">Save me</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>)
 }

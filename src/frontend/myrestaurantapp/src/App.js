@@ -11,6 +11,7 @@ import ActiveOrders from "./pages/ActiveOrders";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import {validateRoleUser} from "./services/UserRolesValidation";
+import Storage from "./pages/Storage";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Main/>} exact/>
                     {validateRoleUser() && <Route path="/ingredient" element={<Ingredients/>}/>}
+                    {validateRoleUser() && <Route path="/storage" element={<Storage/>}/>}
                     {validateRoleUser() && <Route path="/create-recipe" element={<CreateRecipe/>}/>}
                     {validateRoleUser() && <Route path="/create-customer" element={<AddCustomer/>}/>}
                     {validateRoleUser() && <Route path={"/create-order"} element={<AddNewOrder/>}/>}

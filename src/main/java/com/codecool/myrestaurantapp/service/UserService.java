@@ -46,6 +46,7 @@ public class UserService implements UserDetailsService {
         UserEntity userEntity = userEntityRepository.findUserByName(userName);
         RoleEntity role = roleEntityRepository.findRoleByName(roleName);
         userEntity.getRoleEntities().add(role);
+        userEntityRepository.save(userEntity);
     }
 
     public UserEntity getUser(String name) {
