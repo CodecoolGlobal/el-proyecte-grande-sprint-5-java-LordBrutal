@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Collapsible from "../components/Collapsible";
 import AuthHeader from "../services/AuthHeader";
 import axios from "axios";
+import CircleLoader from "../components/CircleLoader";
 
 
 function ActiveOrders(props) {
@@ -30,7 +31,7 @@ function ActiveOrders(props) {
 
     if (jsonResult.isLoaded && jsonResult.error === undefined) {
         return (
-            <div>
+            <div className="animation-show">
                 <h1 className={"page-title"}>Active orders</h1>
                 {jsonResult.data.map((order, index) => (
                     <Collapsible key={index} content={order.customer.name} time={order.formattedDateTime}>
@@ -77,7 +78,7 @@ function ActiveOrders(props) {
             </div>
         );
     }
-    return (<h1>Hello</h1>);
+    return (<div className="loading-box"><CircleLoader/></div>);
 
 }
 
