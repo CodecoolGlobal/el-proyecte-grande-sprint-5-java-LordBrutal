@@ -115,7 +115,7 @@ public class ApiController {
     @PostMapping(value = "/api/add-to-storage")
     public void addToStorage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         storageService.addIngredient(request.getParameterMap());
-        response.sendRedirect("http://localhost:3000/");
+        response.sendRedirect("http://localhost:3000/storage");
     }
 
     /**User related endpoints*/
