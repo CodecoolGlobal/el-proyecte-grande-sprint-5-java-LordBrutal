@@ -62,12 +62,20 @@ body {
     margin: 0 auto;
     width: 50%;
 }
-
+.error-logo{
+    margin: 130px auto 0 auto;
+    width: 45%;
+}
+.error-text{
+    margin-top: 50px;
+    font-weight: bold;
+    color: white;
+}
 .form-container {
     margin-top: 120px;
 }
 
-.add-ingredient-baackround {
+.add-ingredient-backround {
     padding: 50px;
     width: 230px;
     margin: 0 auto;
@@ -97,7 +105,7 @@ body {
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-top: 5px;
+    margin-top: 10px;
     height: 30px;
     margin-bottom: 10px;
     background-color: transparent;
@@ -141,7 +149,7 @@ body {
     margin-top: 5px;
 }
 
-.add-user-baackround {
+.add-user-backround {
     padding: 50px;
     width: 450px;
     margin: 0 auto;
@@ -151,7 +159,7 @@ body {
 
 }
 
-.add-user-baackround input {
+.add-user-backround input{
     width: 100%;
 }
 
@@ -228,6 +236,17 @@ button a, a:hover, a:focus, a:active {
         transform: translateX(0);
     }
 }
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+.animation-show {
+    animation: 0.8s ease-out 0s 1 show;
+}
 .animation-top {
     /* This section calls the slideInFromLeft animation we defined above */
     animation: 0.8s ease-out 0s 1 slideInFromTop;
@@ -240,3 +259,32 @@ button a, a:hover, a:focus, a:active {
 option {
     background-color: darkslategray;
 }
+
+.user-login{
+    padding: 50px;
+    width: 450px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.14);
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+}
+.user-login input{
+    font-size: 17px;
+    color: white;
+    width: 80%;
+    text-align: center;
+}
+.loading-box {
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+    margin-top: calc(15%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ig {
+    color: #757575;
+    transform: scale(2);
+    transform-origin: 0 0;
+    background-color: transparent;}

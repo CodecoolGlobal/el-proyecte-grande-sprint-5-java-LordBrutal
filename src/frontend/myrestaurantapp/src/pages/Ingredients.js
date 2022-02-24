@@ -3,9 +3,9 @@ import SelectIngredient from "../SelectIngredient";
 function Ingredients() {
     return (
         <div>
-            <div className={"ingredients-container"}>
+            <div className={"ingredients-container animation-show"}>
                 <div className="form-container">
-                    <div className="add-ingredient-baackround">
+                    <div className="add-ingredient-backround">
                         <form action="http://localhost:8080/api/add-ingredient" method="POST">
                             <label className="label-text">Ingredient name<br/>
                                 <input className="label-input" type="text" name="name" autoComplete="off" required/>
@@ -25,7 +25,7 @@ function Ingredients() {
                     </div>
                 </div>
                 <div className="form-container">
-                    <div className="add-ingredient-baackround">
+                    <div className="add-ingredient-backround">
                         <form action="http://localhost:8080/api/add-to-storage" method="POST">
                             <h1>Add ingredient to storage</h1>
                             <SelectIngredient/>

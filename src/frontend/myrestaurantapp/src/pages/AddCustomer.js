@@ -1,6 +1,6 @@
 function AddCustomer() {
-    return (<div className="form-container">
-        <div className="add-user-baackround">
+    return (<div className="form-container animation-show">
+        <div className="add-user-backround">
             <form action="http://localhost:8080/api/add-customer" method="POST">
                 <label className="label-text">Name<br/>
                     <input className="label-input" type="text"  width="100px" name="name" autoComplete="off" required/>

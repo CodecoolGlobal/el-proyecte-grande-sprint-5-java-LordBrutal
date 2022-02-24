@@ -58,4 +58,8 @@ public class StorageService {
             storageEntityRepositpry.save(storageEntity);
         }
     }
+
+    public List<StorageEntity> getAllStorageItem() {
+        return storageEntityRepositpry.findAll();
+    }
 }
