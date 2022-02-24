@@ -5,6 +5,7 @@ import com.codecool.myrestaurantapp.model.entity.StorageEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StorageEntityRepositpry extends JpaRepository<StorageEntity, Long> {
@@ -15,5 +16,8 @@ public interface StorageEntityRepositpry extends JpaRepository<StorageEntity, Lo
     Optional<StorageEntity> findByIngredientId(Long id);
 
     StorageEntity findStorageEntityByIngredientId(Long ingredientId);
+
+    @Query("SELECT s FROM StorageEntity s ORDER BY s.ingredient.name")
+    List<StorageEntity> findAllStorageEntity();
 
 }
