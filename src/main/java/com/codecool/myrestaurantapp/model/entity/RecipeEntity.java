@@ -16,7 +16,7 @@ import java.util.Map;
 public class RecipeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     @ManyToMany(mappedBy = "foods")
