@@ -3,6 +3,7 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/api"
 
 const login = async(username, password) => {
+    let loginSuccess;
     const params = new URLSearchParams()
     params.append('username', username)
     params.append('password', password)
@@ -16,9 +17,12 @@ const login = async(username, password) => {
         .then(response => {
             if (response.data.access_token) {
                 localStorage.setItem("access_token", JSON.stringify(response.data.access_token));
+                loginSuccess =  true;
             }
-            // return response.data;
+        }).catch(error => {
+            loginSuccess = false
         });
+    return loginSuccess;
 }
 const logout = () => {
     localStorage.removeItem("access_token");
