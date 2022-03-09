@@ -327,3 +327,13 @@ option {
 .storage-table tr:nth-child(even) {
     background-color: #83bfbe;
 }
+.user-login-error{
+    width: 550px;
+    margin: 2px auto;
+    background-color: #f8cdcd;
+    border: 1px solid #cb0018;
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.27);
+    font-size: 8px;
+    color: #cb0018;
+}

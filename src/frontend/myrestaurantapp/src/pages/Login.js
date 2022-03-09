@@ -12,6 +12,7 @@ function Login() {
     });
 
     const [formData, updateFormData] = React.useState(initialFormData);
+    const [loginResult, setLoginResult] = React.useState(false)
 
     const handleChange = (e) => {
         updateFormData({
@@ -20,11 +21,17 @@ function Login() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        login(formData.username, formData.password).then(r => history('/'))
-    };
+        const loginStatus = await login(formData.username, formData.password)
+        if (loginStatus){
+            history('/')
+        }else {
+            setLoginResult(true)
+            setTimeout( reset => {setLoginResult(false)}, 3000);
+        }
 
+    };
     return (
         <div>
             <div className="form-container animation-show">
@@ -41,6 +48,9 @@ function Login() {
                     <br/>
                     <button className="submit-button" onClick={handleSubmit}>Submit</button>
                 </div>
+                {loginResult && <div className="user-login-error animation-show">
+                    <h1>Invalid username or password</h1>
+                </div>}
             </div>
         </div>
     );
