@@ -28,7 +28,7 @@ function Login() {
             history('/')
         }else {
             setLoginResult(true)
-            setTimeout( funt => {setLoginResult(false)}, 3000);
+            setTimeout( reset => {setLoginResult(false)}, 3000);
         }
 
     };
