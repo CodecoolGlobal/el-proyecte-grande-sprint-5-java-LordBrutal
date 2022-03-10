@@ -125,8 +125,12 @@ public class ApiController {
     }
 
     @PutMapping(value = "api/user/add-role")
-    public void addRoleToUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        userService.addRoleToUser(request.getParameter("username"), request.getParameter("role"));
+    public ResponseEntity<?> addRoleToUser(@RequestBody UserBaseModel user) {
+        if(userService.addRoleToUser(user.getUsername(), user.getRole())) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+
     }
 
     /**Storage related endpoints*/
