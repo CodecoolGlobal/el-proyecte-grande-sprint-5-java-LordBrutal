@@ -1,7 +1,7 @@
 import NavbarListItem from "./components/NavbarListItem";
 import logo from "./images/logomain.svg"
 import {useLocation} from "react-router-dom";
-import {validateRoleUser} from "./services/UserRolesValidation";
+import {validateRoleAdmin, validateRoleUser} from "./services/UserRolesValidation";
 import {logout} from "./services/AuthService";
 
 function Navbar() {
@@ -22,6 +22,7 @@ function Navbar() {
                 <div>
                     <div className="header-navbar">
                         <ul>
+                            {validateRoleAdmin() && (<div><li><a href="/register-user">Register user</a></li></div>)}
                             {validateRoleUser() ? (<div><li><a href="/" onClick={logout}>Logout</a></li>
                                 <li><a href="/ingredient">Add ingredient</a></li>
                                 <li><a href="/create-recipe">Create recipe</a></li>

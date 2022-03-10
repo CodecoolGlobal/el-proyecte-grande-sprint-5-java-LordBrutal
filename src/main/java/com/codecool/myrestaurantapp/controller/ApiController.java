@@ -1,9 +1,6 @@
 package com.codecool.myrestaurantapp.controller;
 
-import com.codecool.myrestaurantapp.model.Customer;
-import com.codecool.myrestaurantapp.model.Ingredient;
-import com.codecool.myrestaurantapp.model.Order;
-import com.codecool.myrestaurantapp.model.Receipt;
+import com.codecool.myrestaurantapp.model.*;
 import com.codecool.myrestaurantapp.model.entity.CustomerEntity;
 import com.codecool.myrestaurantapp.model.entity.UserEntity;
 import com.codecool.myrestaurantapp.service.*;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -121,18 +117,20 @@ public class ApiController {
     /**User related endpoints*/
 
     @PostMapping(value = "api/user/register")
-    public ResponseEntity<?> registerUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserEntity user = UserEntity.builder().name(request.getParameter("username")).password(request.getParameter("password"))
-                .roleEntities(new ArrayList<>()).build();
-        if(userService.saveUser(user)) {
+    public ResponseEntity<?> registerUser(@RequestBody UserEntity userEntity) throws IOException {
+        if(userService.saveUser(userEntity)) {
             return ResponseEntity.ok().build();
         }
-        return ResponseEntity.badRequest().body("This username already exists");
+        return ResponseEntity.badRequest().build();
     }
 
     @PutMapping(value = "api/user/add-role")
-    public void addRoleToUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        userService.addRoleToUser(request.getParameter("username"), request.getParameter("role"));
+    public ResponseEntity<?> addRoleToUser(@RequestBody UserBaseModel user) {
+        if(userService.addRoleToUser(user.getUsername(), user.getRole())) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+
     }
 
     /**Storage related endpoints*/
