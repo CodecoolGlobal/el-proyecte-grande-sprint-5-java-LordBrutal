@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import jwt_decode from "jwt-decode";
 import {getUserToken} from "./AuthService";
 
@@ -13,5 +13,14 @@ const validateRoleUser = () =>{
     return false
 }
 
+const validateRoleAdmin = () => {
+    const jwt = getUserToken();
+    if (jwt !== "") {
+        const decoded = jwt_decode(jwt);
+        return decoded.roles.includes("ROLE_ADMIN")
+    }
+    return false
+}
 
-export {validateRoleUser};
+
+export {validateRoleUser, validateRoleAdmin};
