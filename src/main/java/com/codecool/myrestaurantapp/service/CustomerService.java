@@ -22,16 +22,10 @@ public class CustomerService {
         this.addressEntityRepository = addressEntityRepository;
     }
 
-    public void addCustomer(Map<String, String[]> parameters){
-        String[] name = parameters.get("name");
-        String[] email = parameters.get("email");
-        String[] phoneNumber = parameters.get("phoneNumber");
-        String[] cityName = parameters.get("cityName");
-        String[] streetName = parameters.get("streetName");
-        String[] houseNumberString =parameters.get("houseNumber");
-        AddressEntity addressEntity = new AddressEntity(cityName[0],streetName[0],Integer.parseInt(houseNumberString[0]));
+    public void addCustomer(CustomerEntity customerEntity){
+        AddressEntity addressEntity = customerEntity.getAddress();
         addressEntity = addressEntityRepository.save(addressEntity);
-        CustomerEntity customerEntity = new CustomerEntity(name[0],email[0],phoneNumber[0], addressEntity);
+        CustomerEntity customerNew = new CustomerEntity(customerEntity.getName(),customerEntity.getEmail(),customerEntity.getPhoneNumber(), addressEntity);
         customerEntityRepository.save(customerEntity);
     }
 

@@ -1,6 +1,7 @@
 package com.codecool.myrestaurantapp.controller;
 
 import com.codecool.myrestaurantapp.model.*;
+import com.codecool.myrestaurantapp.model.entity.CustomerEntity;
 import com.codecool.myrestaurantapp.model.entity.UserEntity;
 import com.codecool.myrestaurantapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +66,8 @@ public class ApiController {
     /**Customer related endpoint*/
 
     @PostMapping(value = "/api/add-customer")
-    public void addNewCustomer(HttpServletResponse response, HttpServletRequest request) throws IOException {
-        customerService.addCustomer(request.getParameterMap());
-        response.sendRedirect("http://localhost:3000/");
+    public void addNewCustomer(@RequestBody CustomerEntity customer) throws IOException {
+        customerService.addCustomer(customer);
     }
 
     @GetMapping(value = "/api/get-all-customer")
