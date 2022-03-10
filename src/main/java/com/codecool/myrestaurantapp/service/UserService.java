@@ -42,11 +42,17 @@ public class UserService implements UserDetailsService {
         return roleEntityRepository.save(role);
     }
 
-    public void addRoleToUser(String userName, String roleName) {
+    public boolean addRoleToUser(String userName, String roleName) {
         UserEntity userEntity = userEntityRepository.findUserByName(userName);
         RoleEntity role = roleEntityRepository.findRoleByName(roleName);
-        userEntity.getRoleEntities().add(role);
-        userEntityRepository.save(userEntity);
+        if (userEntity!=null && role!=null) {
+            userEntity.getRoleEntities().add(role);
+            userEntityRepository.save(userEntity);
+            return true;
+        }
+        return false;
+
+
     }
 
     public UserEntity getUser(String name) {
